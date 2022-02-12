@@ -57,10 +57,12 @@ export default function Home() {
                   <Image src="/logo/linked-in.svg" alt="LinkedIn Logo" width={72} height={16} />
             </a>
           </span>
+          <span className={styles.logo}>
+              <a target="_blank" rel="noopener noreferrer" href="mailto:pshreyam@gmail.com">
+                    <Image src="/logo/email.svg" alt="Email Logo" width={72} height={16} />
+              </a>
+          </span>
         </div>
-        <p className={`${styles.description} ${styles.fade}`}>
-          Contents in this website will be updated soon!
-        </p>
       </section>
 
       <footer className={styles.footer}>
