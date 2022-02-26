@@ -28,11 +28,11 @@ export default function Home() {
           </Link>
         </div>
         <ul className={styles.nav__links}>
-          <li>
-            <Link href="#">Home</Link>
+          <li className={[styles.nav__link, styles.active].join(" ")}>
+            <Link href="/">Home</Link>
           </li>
-          <li>
-            <Link href="#blogs">Blogs</Link>
+          <li className={styles.nav__link}>
+            <Link href="/blogs">Blogs</Link>
           </li>
         </ul>
       </nav>
@@ -46,9 +46,7 @@ export default function Home() {
             width={200}
             height={200}
           />
-        </section>
 
-        <section className={styles.content}>
           <p className={styles.description}>
             Hello, this is
             <Typewriter
@@ -64,7 +62,8 @@ export default function Home() {
             I am currently pursuing Computer Engineering at Kathmandu
             University.
           </p>
-
+        </section>
+        <section className={styles.skills}>
           <p>
             <h4 className={styles.skills__header}>My Skills:</h4>
             <ul>
