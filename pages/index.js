@@ -19,7 +19,7 @@ export default function Home() {
         <div className={styles.brand}>
           <Link href="/">
             <Image
-              alt="SP Logo"
+              alt="Logo"
               className={styles.brand__logo}
               src="/logo.png"
               width={40}
@@ -30,9 +30,6 @@ export default function Home() {
         <ul className={styles.nav__links}>
           <li className={[styles.nav__link, styles.active].join(" ")}>
             <Link href="/">Home</Link>
-          </li>
-          <li className={styles.nav__link}>
-            <Link href="/blogs">Blogs</Link>
           </li>
         </ul>
       </nav>

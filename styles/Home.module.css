@@ -29,11 +29,14 @@
 
 .brand__logo {
   height: 0.9rem;
+  margin-top: 2rem;
 }
 
 .navbar {
+  /*
   background-color: #0b1d34;
   color: #f9f9f9;
+  */
   padding: 0.4rem 3rem;
   display: flex;
   align-items: center;
@@ -54,25 +57,23 @@
 }
 
 .navbar li {
-  color: #afafaf;
   font-weight: bold;
   font-size: 0.9rem;
-  border-bottom: 2px solid #0b1d34;
+  border-bottom: 2px solid #ffffff;
 }
 
 .navbar .nav__link.active {
-  color: #a7f542;
-  border-bottom: 2px solid #a7f542;
+  border-bottom: 2px solid #000000;
 }
 
 .navbar .nav__link:active {
-  color: #a7f542;
-  border-bottom: 2px solid #a7f542;
+  color: #000000;
+  border-bottom: 2px solid #000000;
 }
 
 .navbar .nav__link:hover {
-  color: #a7f542;
-  border-bottom: 2px solid #a7f542;
+  color: #000000;
+  border-bottom: 2px solid #000000;
 }
 
 .main {
@@ -81,8 +82,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .header {
@@ -91,8 +92,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /*
   background-color: #0b1d34;
   color: #ffffff;
+  */
   width: 100vw;
 }
 
@@ -109,9 +112,11 @@
   padding: 1rem 0;
   justify-content: center;
   align-items: center;
+  /*
   background-color: #0b1d34;
   color: #f9f9f9;
   border-top: 2px solid #a7f542;
+  */
   font-size: 0.8rem;
 }
 

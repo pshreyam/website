@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import Typewriter from "typewriter-effect";
 import styles from "../styles/Home.module.css";
+
 
 export default function Blogs() {
   return (
@@ -19,7 +19,7 @@ export default function Blogs() {
         <div className={styles.brand}>
           <Link href="/">
             <Image
-              alt="SP Logo"
+              alt="Logo"
               className={styles.brand__logo}
               src="/logo.png"
               width={40}
@@ -37,7 +37,8 @@ export default function Blogs() {
         </ul>
       </nav>
 
-      <main className={styles.sub__container}>This is the Blogs Page!</main>
+      <main className={styles.sub__container}>
+      </main>
 
       <footer className={styles.footer}>&copy; Shreyam Pokharel (2022)</footer>
     </div>
