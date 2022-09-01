@@ -39,7 +39,7 @@ export default function Home() {
           <Image
             alt="Shreyam Pokharel"
             className={styles.profile__image}
-            src="https://gitlab.com/uploads/-/system/user/avatar/7811853/avatar.png"
+            src="/shreyam.jpg"
             width={200}
             height={200}
           />
