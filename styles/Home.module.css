@@ -37,7 +37,7 @@
   background-color: #0b1d34;
   color: #f9f9f9;
   */
-  padding: 0.4rem 3rem;
+  padding: 1.5rem 5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,17 +92,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 80vh;
   /*
   background-color: #0b1d34;
   color: #ffffff;
   */
-  width: 100vw;
+  width: 50vw;
 }
 
 .skills {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
