@@ -29,7 +29,9 @@ export default function Home() {
         </div>
         <ul className={styles.nav__links}>
           <li className={[styles.nav__link, styles.active].join(" ")}>
-            <Link href="/">Home</Link>
+          {/* Add Links to different pages */}
+          {/* <Link href="/">Home</Link>*/}
+          {/* <Link href="/blogs">Blogs</Link>*/}
           </li>
         </ul>
       </nav>
@@ -40,12 +42,11 @@ export default function Home() {
             alt="Shreyam Pokharel"
             className={styles.profile__image}
             src="/shreyam.jpg"
-            width={200}
-            height={200}
+            width={150}
+            height={150}
           />
 
           <p className={styles.description}>
-            Hello, this is
             <Typewriter
               options={{ loop: true, cursor: "_" }}
               onInit={(typewriter) => {
@@ -56,13 +57,15 @@ export default function Home() {
                   .start();
               }}
             />
-            I am currently pursuing Computer Engineering at Kathmandu
-            University.
+            Computer Engineering @ Kathmandu University <br />
+            (2018 - present)
           </p>
+          <p>I am a Linux enthusiast and have strong interests in programming. I code mainly in (but not limited to) Python programming language. Besides Python, I am also able to work with languages such as Rust and Javascript. I also have fair bit of experience around scripting using Python and Bash. I spend my leisure hours exploring about new ideas, especially related to programming and technologies.</p>
         </section>
+
         <section className={styles.skills}>
+          <h1 className={styles.skills__header}>My Skills:</h1>
           <p>
-            <h4 className={styles.skills__header}>My Skills:</h4>
             <ul>
               <li>Python3</li>
               <li>Linux</li>
@@ -71,51 +74,53 @@ export default function Home() {
               <li>PyQt5</li>
             </ul>
           </p>
+        </section>
+        <section className={styles.connect}>
           <p className={styles.connect}>You may connect with me using:</p>
-          <div className={styles.social__links}>
-            <span className={styles.logo}>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/pshreyam"
-              >
-                <Image
-                  src="/assets/github.svg"
-                  alt="Github Logo"
-                  width={72}
-                  height={16}
-                />
-              </a>
-            </span>
-            <span className={styles.logo}>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.linkedin.com/in/shreyam-pokharel-62334221a/"
-              >
-                <Image
-                  src="/assets/linked-in.svg"
-                  alt="LinkedIn Logo"
-                  width={72}
-                  height={16}
-                />
-              </a>
-            </span>
-            <span className={styles.logo}>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="mailto:pshreyam@gmail.com"
-              >
-                <Image
-                  src="/assets/email.svg"
-                  alt="Email Logo"
-                  width={72}
-                  height={16}
-                />
-              </a>
-            </span>
-          </div>
+            <div className={styles.social__links}>
+              <span className={styles.logo}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/pshreyam"
+                >
+                  <Image
+                    src="/assets/github.svg"
+                    alt="Github Logo"
+                    width={72}
+                    height={16}
+                  />
+                </a>
+              </span>
+              <span className={styles.logo}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.linkedin.com/in/shreyam-pokharel-62334221a/"
+                >
+                  <Image
+                    src="/assets/linked-in.svg"
+                    alt="LinkedIn Logo"
+                    width={72}
+                    height={16}
+                  />
+                </a>
+              </span>
+              <span className={styles.logo}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="mailto:pshreyam@gmail.com"
+                >
+                  <Image
+                    src="/assets/email.svg"
+                    alt="Email Logo"
+                    width={72}
+                    height={16}
+                  />
+                </a>
+              </span>
+            </div>
         </section>
       </main>
 
