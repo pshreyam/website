@@ -92,7 +92,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  /* min-height: 80vh; */
   /*
   background-color: #0b1d34;
   color: #ffffff;

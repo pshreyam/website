@@ -63,6 +63,7 @@ export default function Home() {
           <p>I am a Linux enthusiast and have strong interests in programming. I code mainly in (but not limited to) Python programming language. Besides Python, I am also able to work with languages such as Rust and Javascript. I also have fair bit of experience around scripting using Python and Bash. I spend my leisure hours exploring about new ideas, especially related to programming and technologies.</p>
         </section>
 
+        {/*
         <section className={styles.skills}>
           <h1 className={styles.skills__header}>My Skills:</h1>
           <p>
@@ -75,8 +76,10 @@ export default function Home() {
             </ul>
           </p>
         </section>
+        */}
+
         <section className={styles.connect}>
-          <p className={styles.connect}>You may connect with me using:</p>
+          <p className={styles.connect}><b>Connect with me!</b></p>
             <div className={styles.social__links}>
               <span className={styles.logo}>
                 <a
