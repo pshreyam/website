@@ -25,11 +25,13 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+  cursor: pointer;
 }
 
 .brand__logo {
   height: 0.9rem;
   margin-top: 2rem;
+  cursor: pointer;
 }
 
 .navbar {
