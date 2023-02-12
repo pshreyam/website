@@ -127,7 +127,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className={styles.footer}>&copy; Shreyam Pokharel (2022)</footer>
+      <footer className={styles.footer}>&copy; Shreyam Pokharel (2023)</footer>
     </div>
   );
 }
