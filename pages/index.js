@@ -60,7 +60,10 @@ export default function Home() {
             Computer Engineering @ Kathmandu University <br />
             (2018 - present)
           </p>
-          <p>I am a Linux enthusiast and have strong interests in programming. I code mainly in (but not limited to) Python programming language. Besides Python, I am also able to work with languages such as Rust and Javascript. I also have fair bit of experience around scripting using Python and Bash. I spend my leisure hours exploring new ideas, especially related to programming and technologies.</p>
+          <p className={styles.text}>I am a Linux enthusiast and have strong interests in programming. I code mainly in (but not limited to) Python programming language. Besides Python, I am also able to work with languages such as Rust and Javascript. I also have fair bit of experience around scripting using Python and Bash. I spend my leisure hours exploring new ideas, especially related to programming and technologies. My favourite passtime is changing my linux configuration in order to explore new commands and understand the underlying concepts of the operating system.</p>
+          <p className={styles.text}>
+            I am currently looking for internship opportunities. 
+          </p>
         </section>
 
         {/*
