@@ -57,8 +57,7 @@ export default function Home() {
                   .start();
               }}
             />
-            Computer Engineering @ Kathmandu University <br />
-            (2018 - present)
+            Computer Engineer<br />
           </p>
           <p className={styles.text}>
     I am a Linux enthusiast and have strong interests in programming. Primarily, I code in Python programming language but I still have some basic knowledge around C and C++. Also, I have a fair share of experience around scripting using Python and Bash. I spend my leisure hours exploring new ideas, especially related to programming and technologies. My favourite passtime is changing my linux configuration in order to explore new commands and understand the underlying concepts of the operating system.
