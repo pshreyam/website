@@ -47,40 +47,15 @@ export default function Home() {
           />
 
           <p className={styles.description}>
-            <Typewriter
-              options={{ loop: true, cursor: "_" }}
-              onInit={(typewriter) => {
-                typewriter
-                  .typeString("<b>Shreyam Pokharel.</b>")
-                  .pauseFor(1000)
-                  .deleteAll()
-                  .start();
-              }}
-            />
-            Computer Engineer<br />
+            <b>Shreyam Pokharel</b><br />
           </p>
           <p className={styles.text}>
-    I am a Linux enthusiast and have strong interests in programming. Primarily, I code in Python programming language but I still have some basic knowledge around C and C++. Also, I have a fair share of experience around scripting using Python and Bash. I spend my leisure hours exploring new ideas, especially related to programming and technologies. My favourite passtime is changing my linux configuration in order to explore new commands and understand the underlying concepts of the operating system.
+    I am a passionate Linux enthusiast with a strong penchant for Python programming. I am also familiar with JavaScript, C, C++, and Bash. During my free time, I love delving into innovative programming and tech concepts. I am also interested in learning about GNU/Linux tools and concepts.
           </p>
         </section>
-
-        {/*
-        <section className={styles.skills}>
-          <h1 className={styles.skills__header}>My Skills:</h1>
-          <p>
-            <ul>
-              <li>Python3</li>
-              <li>Linux</li>
-              <li>Django</li>
-              <li>Flask</li>
-              <li>PyQt5</li>
-            </ul>
-          </p>
-        </section>
-        */}
 
         <section className={styles.connect}>
-          <p className={styles.connect}><b>Connect with me!</b></p>
+          <p className={styles.connect}><b>Feel free to reach out to me!</b></p>
             <div className={styles.social__links}>
               <span className={styles.logo}>
                 <a
