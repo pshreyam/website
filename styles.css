@@ -1,0 +1,102 @@
+body {
+  background-color: #1d1f21;
+  color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.terminal {
+  padding: 25px 20px;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: #282a36;
+}
+
+.output {
+  white-space: pre-wrap;
+  margin-bottom: 10px; /* Ensure space between output and input */
+  height: auto; /* This can also have a fixed height */
+  overflow-y: scroll; /* Allows it to scroll */
+}
+
+.input-container {
+  display: flex;
+}
+
+.prompt {
+  padding-right: 5px; /* Space between prompt and input */
+  color: #8abeb7; /* Color for the prompt */
+}
+
+#input {
+  background: none;
+  color: #c5c8c6;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+}
+
+#input::placeholder {
+  color: #7b7b7b;
+}
+
+.command {
+  color: #8abeb7; /* Aqua */
+}
+
+.response {
+  color: #bfc968; /* Yellow */
+}
+
+.response.warning {
+  color: #d85858; /* Red */
+}
+
+.link {
+  color: #008cba; /* A nice blue color for the links */
+  text-decoration: none; /* Remove the underline */
+}
+
+.link:hover {
+  text-decoration: underline; /* Underline on hover for better UX */
+  color: #005f7f; /* Darker shade of blue on hover */
+}
+
+.profile-image {
+  max-width: 80%; /* Adjust this value as needed */
+  width: auto;
+  height: 130px; /* Maintain aspect ratio */
+  border-radius: 5px; /* Add some rounded corners */
+  margin-top: 10px; /* Space above the image */
+  display: block; /* Ensures the image behaves like a block-level element */
+  /* margin-left: auto;
+  margin-right: auto;  */
+}
+
+/* Light Theme */
+.light-theme body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.light-theme .terminal {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.light-theme .command {
+  color: #008cba; /* Change to a color suitable for light theme */
+}
+
+.light-theme .response {
+  color: #555555; /* Darker response color for visibility */
+}
+
+.light-theme #input {
+  color: #787d7a;
+}
