@@ -12,8 +12,10 @@ const commands = {
     content: () => {
       // Dynamically build the help text
       let helpText = "Available commands:\n\n";
+      const commandWidth = 20; // Fixed width for commands (adjust as needed)
       for (const [key, { description }] of Object.entries(commands)) {
-        helpText += `- ${key}: ${description}\n`; // Use the description from the command
+        const paddedCommand = key.padEnd(commandWidth); // Pad command to fixed width
+        helpText += `${paddedCommand} ${description}\n`; // Add padded command with description
       }
       return helpText;
     },
@@ -78,8 +80,13 @@ const commands = {
   clear: {
     content: () => {
       outputDiv.innerHTML = ""; // Clear the terminal output
+      displayIntroduction();
     },
     description: "Clears the terminal output (Ctrl + L does the same)",
+  },
+  ping: {
+    content: "pong",
+    description: "Checks if the terminal is active and responds with 'pong'",
   },
   toggle_theme: {
     content: () => {
@@ -105,7 +112,7 @@ const commands = {
       historyIndex = -1; // Reset history index
       location.reload();
     },
-    description: "Reset the site preferences (theme and history)",
+    description: "Reset the theme preference and command history",
   },
 };
 
@@ -113,6 +120,7 @@ document.addEventListener("keydown", (event) => {
   if (event.ctrlKey && event.key === "l") {
     event.preventDefault();
     outputDiv.innerHTML = "";
+    displayIntroduction();
   } else if (event.ctrlKey && event.key === "u") {
     // Handle Ctrl + U to clear the input field
     event.preventDefault(); // Prevent default action
@@ -144,9 +152,17 @@ inputField.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     const input = inputField.value.trim();
     if (input) {
-      commandHistory.push(input); // Save the command to history
-      localStorage.setItem("commandHistory", JSON.stringify(commandHistory)); // Update localStorage with new command
-      historyIndex = commandHistory.length; // Update history index
+      // If the commandHistory is empty or the current command is different to the last command in
+      // history, only then push the command to history.
+      // This declutters the command history by removing duplicate commands.
+      if (
+        commandHistory.length === 0 ||
+        commandHistory[commandHistory.length - 1] !== input
+      ) {
+        commandHistory.push(input); // Save the command to history
+        localStorage.setItem("commandHistory", JSON.stringify(commandHistory)); // Update localStorage with new command
+        historyIndex = commandHistory.length; // Update history index
+      }
       inputField.value = ""; // Clear the input field
       handleCommand(input); // Call the function to handle the command
     }
@@ -156,7 +172,6 @@ inputField.addEventListener("keydown", function (event) {
     if (historyIndex > 0) {
       historyIndex--; // Move up in history
       inputField.value = commandHistory[historyIndex]; // Set input to command in history
-      console.log("Up arrow action executed");
       inputField.selectionStart = inputField.selectionEnd =
         inputField.value.length;
     }
@@ -178,10 +193,9 @@ inputField.addEventListener("keydown", function (event) {
 });
 
 function displayIntroduction() {
-  const introMessage =
-    "Welcome to this terminal interface, where you can discover more about me, <b>Shreyam Pokharel</b>.\n" +
-    "If you're unfamiliar with terminal usage, simply type 'help' and press Enter to view all available commands.\n" +
-    "<i>Tip: You can also toggle the theme with the 'toggle_theme' command and reset the site settings using `reset` command.!</i><hr>";
+  const introMessage = `<strong>Welcome to this terminal interface!</strong> Discover more about me, <b>Shreyam Pokharel</b>.
+If you're unfamiliar with terminal usage, simply type <code>'help'</code> and press Enter to view all the available commands.
+<i class="fa-solid fa-circle-info" title="Tip"></i> You can toggle the theme with the <code>'toggle_theme'</code> command and reset site settings using the <code>'reset'</code> command.<hr/>`;
 
   const output = document.createElement("div");
   output.innerHTML = `<span class="response">${introMessage}</span>\n`;
