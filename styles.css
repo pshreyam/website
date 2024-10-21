@@ -1,7 +1,8 @@
 body {
   background-color: #1d1f21;
   color: #ffffff;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Fira Code", "Courier New", Courier, monospace;
+  font-size: 14px;
   margin: 0;
   display: flex;
   justify-content: center;
