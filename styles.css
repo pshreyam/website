@@ -1,7 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fira Code", "Courier New", Courier, monospace;
+}
+
 body {
   background-color: #1d1f21;
   color: #ffffff;
-  font-family: "Fira Code", "Courier New", Courier, monospace;
   font-size: 14px;
   margin: 0;
   display: flex;
@@ -19,7 +25,7 @@ body {
 
 .output {
   white-space: pre-wrap;
-  margin-bottom: 10px; /* Ensure space between output and input */
+  /* margin-bottom: 10px; Ensure space between output and input */
   height: auto; /* This can also have a fixed height */
   overflow-y: scroll; /* Allows it to scroll */
 }
@@ -29,8 +35,8 @@ body {
 }
 
 .prompt {
-  padding-right: 5px; /* Space between prompt and input */
-  color: #8abeb7; /* Color for the prompt */
+  padding-right: 8px; /* Space between prompt and input */
+  color: #38cda3; /* Color for the prompt */
 }
 
 #input {
@@ -39,7 +45,7 @@ body {
   outline: none;
   border: none;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #input::placeholder {
@@ -75,8 +81,6 @@ body {
   border-radius: 5px; /* Add some rounded corners */
   margin-top: 10px; /* Space above the image */
   display: block; /* Ensures the image behaves like a block-level element */
-  /* margin-left: auto;
-  margin-right: auto;  */
 }
 
 /* Light Theme */

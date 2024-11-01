@@ -17,7 +17,7 @@ const commands = {
         const paddedCommand = key.padEnd(commandWidth); // Pad command to fixed width
         helpText += `${paddedCommand} ${description}\n`; // Add padded command with description
       }
-      return helpText;
+      return helpText.trim();
     },
     description: "Displays a list of available commands",
   },
@@ -195,7 +195,7 @@ inputField.addEventListener("keydown", function (event) {
 function displayIntroduction() {
   const introMessage = `<strong>Welcome to this terminal interface!</strong> Discover more about me, <b>Shreyam Pokharel</b>.
 If you're unfamiliar with terminal usage, simply type <code>'help'</code> and press Enter to view all the available commands.
-<i class="fa-solid fa-circle-info" title="Tip"></i> You can toggle the theme with the <code>'toggle_theme'</code> command and reset site settings using the <code>'reset'</code> command.<hr/>`;
+<i class="fa-solid fa-circle-info" title="Tip"></i> You can toggle the theme with the <code>'toggle_theme'</code> command and reset site settings using the <code>'reset'</code> command.<hr style="margin-top: 10px;"/>`;
 
   const output = document.createElement("div");
   output.innerHTML = `<span class="response">${introMessage}</span>\n`;
@@ -215,9 +215,9 @@ function handleCommand(input) {
 
     response = response || "";
 
-    output.innerHTML = `<span class="command">> ${input}</span>\n<span class="response">${response}</span>\n\n`;
+    output.innerHTML = `<span class="command"><span class="prompt"><i class="fa-solid fa-arrow-right"></i></span>${input}</span>\n<span class="response">${response}</span>\n\n`;
   } else {
-    output.innerHTML = `<span class="command">> ${input}</span>\n<span class="response warning">Command not found. Type 'help' for available commands.</span>\n\n`;
+    output.innerHTML = `<span class="command"><span class="prompt"><i class="fa-solid fa-arrow-right"></i></span>${input}</span>\n<span class="response warning">Command not found. Type 'help' for available commands.</span>\n\n`;
   }
   outputDiv.appendChild(output);
   outputDiv.scrollTop = outputDiv.scrollHeight; // auto-scroll to the bottom
