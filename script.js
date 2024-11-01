@@ -1,5 +1,6 @@
 const inputField = document.getElementById("input");
 const outputDiv = document.getElementById("output");
+const terminalDiv = document.getElementById("terminal");
 
 let commandHistory = JSON.parse(localStorage.getItem("commandHistory")) || []; // Load command history
 let historyIndex = commandHistory.length; // Pointer to track position in command history
@@ -70,6 +71,11 @@ const commands = {
       "- Exploring programming languages and tinkering my operating system\n" +
       "- Singing and participating in various sports",
     description: "Lists my hobbies",
+  },
+  default: {
+    content: runDefaultCommands,
+    description:
+      "Run all the commands which are run by default upon page initialization",
   },
   history: {
     content: () => {
@@ -211,7 +217,7 @@ function handleCommand(input) {
         ? commands[input].content()
         : commands[input].content;
 
-    if (input === "clear") return;
+    if (input === "clear" || input === "default") return;
 
     response = response || "";
 
@@ -220,7 +226,17 @@ function handleCommand(input) {
     output.innerHTML = `<span class="command"><span class="prompt"><i class="fa-solid fa-arrow-right"></i></span>${input}</span>\n<span class="response warning">Command not found. Type 'help' for available commands.</span>\n\n`;
   }
   outputDiv.appendChild(output);
-  outputDiv.scrollTop = outputDiv.scrollHeight; // auto-scroll to the bottom
+  terminalDiv.scrollTop = outputDiv.scrollHeight; // auto-scroll to the bottom
+}
+
+function runDefaultCommands() {
+  let defaultCommands = ["image", "bio", "contacts", "experience", "education"];
+
+  defaultCommands.forEach((item) => {
+    // commandHistory.push(item);
+    // historyIndex = commandHistory.length;
+    handleCommand(item);
+  });
 }
 
 /* 
@@ -241,15 +257,12 @@ const currentTime = new Date().getTime();
 // Display the introductory message
 displayIntroduction(); // Call function to display the introduction
 
+// Automatically run the default commands when the terminal webpage initializes
+// Do not run the command upon reloading the website if the command was last run 300000 ms (5 minutes) ago.
 if (!lastCommandsRunTime || currentTime - lastCommandsRunTime > 300000) {
-  // 300000 ms = 5 minutes
-  // Automatically run the basic commands when the terminal initializes
-  ["image", "bio", "contacts", "experience", "education"].forEach((item) => {
-    // commandHistory.push(item);
-    // historyIndex = commandHistory.length;
-    handleCommand(item);
-  });
+  runDefaultCommands();
   localStorage.setItem(lastCommandsRunKey, currentTime); // Update the timestamp
 }
 
+// Immediately focus on the input prompt after the terminal webpage initializes
 inputField.focus();
