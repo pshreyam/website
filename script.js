@@ -22,6 +22,10 @@ const commands = {
     },
     description: "Displays a list of available commands",
   },
+  name: {
+    content: "Shreyam Pokharel",
+    description: "Displays my name",
+  },
   bio: {
     content:
       "I am a passionate Linux enthusiast with a strong penchant for Python programming. I am also familiar with C, C++, Bash and a little bit JavaScript. During my free time, I love delving into innovative programming and tech concepts. I am also interested in learning about GNU/Linux tools and concepts.",
@@ -204,7 +208,7 @@ If you're unfamiliar with terminal usage, simply type <code>'help'</code> and pr
 <i class="fa-solid fa-circle-info" title="Tip"></i> You can toggle the theme with the <code>'toggle_theme'</code> command and reset site settings using the <code>'reset'</code> command.<hr style="margin-top: 10px;"/>`;
 
   const output = document.createElement("div");
-  output.innerHTML = `<span class="response">${introMessage}</span>\n`;
+  output.innerHTML = `<span class="response" id="intro">${introMessage}</span>\n`;
   outputDiv.appendChild(output);
 }
 
@@ -230,7 +234,7 @@ function handleCommand(input) {
 }
 
 function runDefaultCommands() {
-  let defaultCommands = ["image", "bio", "contacts", "experience", "education"];
+  let defaultCommands = ["name", "image", "bio", "contacts", "experience", "education"];
 
   defaultCommands.forEach((item) => {
     // commandHistory.push(item);

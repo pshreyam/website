@@ -105,3 +105,12 @@ body {
 .light-theme #input {
   color: #787d7a;
 }
+
+@media print {
+  .input-container {
+    display: none !important;
+  }
+  #intro {
+    display: none !important;
+  }
+}
