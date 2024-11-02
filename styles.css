@@ -27,7 +27,7 @@ body {
   white-space: pre-wrap;
   /* margin-bottom: 10px; Ensure space between output and input */
   height: auto; /* This can also have a fixed height */
-  overflow-y: scroll; /* Allows it to scroll */
+  overflow-y: none; /* Do not allow overflow for this */
 }
 
 .input-container {

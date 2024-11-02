@@ -56,7 +56,8 @@ const commands = {
     description: "Lists my professional experience",
   },
   projects: {
-    content: "[This is undergoing maintainance. Coming Soon ...]",
+    content:
+      "Please visit <a href='https://github.com/pshreyam' target='_blank' class='link'>my github profile</a> to view my projects.",
     description: "Lists my projects",
   },
   education: {
@@ -234,7 +235,14 @@ function handleCommand(input) {
 }
 
 function runDefaultCommands() {
-  let defaultCommands = ["name", "image", "bio", "contacts", "experience", "education"];
+  let defaultCommands = [
+    "name",
+    "image",
+    "bio",
+    "contacts",
+    "experience",
+    "education",
+  ];
 
   defaultCommands.forEach((item) => {
     // commandHistory.push(item);
@@ -243,7 +251,7 @@ function runDefaultCommands() {
   });
 }
 
-/* 
+/*
 The main logic.
 */
 
