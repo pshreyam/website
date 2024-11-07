@@ -203,10 +203,17 @@ inputField.addEventListener("keydown", function (event) {
   }
 });
 
+const tips = [
+  "Simply type <code>'help'</code> and press <code>Enter</code> to view all the available commands.",
+  "You can toggle the theme preference with <code>'toggle_theme'</code> command.",
+  "Site preferences can be reset using <code>'reset'</code> command.",
+  "Use <code>'default'</code> command in order to fetch the default content loaded on the site on opening first time.",
+];
+let updatedTipsIndex = 0;
+
 function displayIntroduction() {
-  const introMessage = `<strong>Welcome to this terminal interface!</strong> Discover more about me, <b>Shreyam Pokharel</b>.
-If you're unfamiliar with terminal usage, simply type <code>'help'</code> and press Enter to view all the available commands.
-<i class="fa-solid fa-circle-info" title="Tip"></i> You can toggle the theme with the <code>'toggle_theme'</code> command and reset site settings using the <code>'reset'</code> command.<hr style="margin-top: 10px;"/>`;
+  const introMessage = `<strong>Welcome to this terminal interface!</strong> Discover more about me, <b style="font-size: 1.05em;">Shreyam Pokharel</b>.
+<div class="tips"><i class="fa-solid fa-circle-info" title="Tip"></i> <span id="tipsMessage">${tips[0]}</span></div>`;
 
   const output = document.createElement("div");
   output.innerHTML = `<span class="response" id="intro">${introMessage}</span>\n`;
@@ -251,6 +258,12 @@ function runDefaultCommands() {
   });
 }
 
+function changeTips() {
+  updatedTipsIndex = (updatedTipsIndex + 1) % tips.length;
+  const tipsMessage = document.getElementById("tipsMessage");
+  tipsMessage.innerHTML = tips[updatedTipsIndex];
+}
+
 /*
 The main logic.
 */
@@ -275,6 +288,9 @@ if (!lastCommandsRunTime || currentTime - lastCommandsRunTime > 300000) {
   runDefaultCommands();
   localStorage.setItem(lastCommandsRunKey, currentTime); // Update the timestamp
 }
+
+// Change the tip every 5 seconds
+setInterval(changeTips, 5000);
 
 // Immediately focus on the input prompt after the terminal webpage initializes
 inputField.focus();

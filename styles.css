@@ -114,3 +114,16 @@ body {
     display: none !important;
   }
 }
+
+#intro {
+  color: rgb(218, 132, 132);
+}
+
+.tips {
+  margin-top: 5px;
+}
+
+code {
+  font-size: 0.9em;
+  font-weight: lighter;
+}
