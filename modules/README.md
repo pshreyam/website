@@ -34,11 +34,10 @@ This directory contains the modularized JavaScript code for the terminal portfol
   - Input validation and event handling
 
 ### `ui.js` - User Interface Management
-- **Purpose**: Manages UI updates, themes, tips, and terminal display
+- **Purpose**: Manages UI updates, themes, and terminal display
 - **Classes**: `UIManager`, `TerminalUI`
 - **Responsibilities**:
   - Theme initialization and management
-  - Tips rotation and display
   - Real-time clock updates in tmux bar
   - Terminal output rendering and formatting
   - Introduction message handling

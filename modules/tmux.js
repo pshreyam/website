@@ -21,14 +21,23 @@ export class TmuxManager {
     
     // Clear terminal and run section-specific commands
     window.terminalUI.clearOutput();
-    window.uiManager.displayIntroduction(section === 'terminal');
+    window.uiManager.displayIntroduction();
     
     this.currentSection = section;
     
-    // Enable/disable input based on section
+    // Handle input visibility and state based on section
+    const inputContainer = document.querySelector('.input-container');
+    
     if (section === 'terminal') {
+      // Terminal: show and enable input
+      if (inputContainer) inputContainer.style.display = 'flex';
       window.inputManager.enableInput();
+    } else if (section === 'blogs' || section === 'projects') {
+      // TUI pages: hide input entirely
+      if (inputContainer) inputContainer.style.display = 'none';
     } else {
+      // Other pages: show but disable input
+      if (inputContainer) inputContainer.style.display = 'flex';
       window.inputManager.disableInput();
     }
     
@@ -47,16 +56,30 @@ export class TmuxManager {
       activePane.classList.add('active');
     }
     
+    // Exit TUI mode when switching tabs
+    if (window.terminalUI.isTuiMode()) {
+      window.terminalUI.exitTuiMode();
+    }
+    
     // Clear terminal and run section-specific commands
     window.terminalUI.clearOutput();
-    window.uiManager.displayIntroduction(section === 'terminal');
+    window.uiManager.displayIntroduction();
     
     this.currentSection = section;
     
-    // Enable/disable input based on section
+    // Handle input visibility and state based on section
+    const inputContainer = document.querySelector('.input-container');
+    
     if (section === 'terminal') {
+      // Terminal: show and enable input
+      if (inputContainer) inputContainer.style.display = 'flex';
       window.inputManager.enableInput();
+    } else if (section === 'blogs' || section === 'projects') {
+      // TUI pages: hide input entirely
+      if (inputContainer) inputContainer.style.display = 'none';
     } else {
+      // Other pages: show but disable input
+      if (inputContainer) inputContainer.style.display = 'flex';
       window.inputManager.disableInput();
     }
     
@@ -113,6 +136,16 @@ export class TmuxManager {
         this.switchTmuxPane(section);
       });
     });
+    
+    // Add theme toggle button event listener
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Call the existing toggle theme function from commands.js
+        window.commandManager.toggleTheme();
+      });
+    }
     
     // Handle browser back/forward navigation
     window.addEventListener('popstate', () => {

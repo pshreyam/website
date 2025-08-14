@@ -19,7 +19,7 @@ function initializeApp() {
   // Initialize tmux panes functionality
   window.tmuxManager.initializeTmuxPanes();
   
-  // Load appropriate section based on URL (this will handle displaying introduction with proper tips)
+  // Load appropriate section based on URL
   window.tmuxManager.loadSectionFromURL();
   
   // Focus on the input prompt after initialization

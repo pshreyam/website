@@ -1,0 +1,12 @@
+{
+  "blogs": [
+    {
+      "id": "getting-started",
+      "title": "How I used aliases to speed up my terminal navigation",
+      "description": "Around 2021, I used the following aliases in order to speed up my navigation. Now I simply use cd.",
+      "date": "2025-08-14",
+      "tags": ["terminal", "productivity", "zsh", "linux"],
+      "filename": "aliases-for-navigation.md"
+    }
+  ]
+}

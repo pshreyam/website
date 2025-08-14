@@ -131,7 +131,43 @@ export class InputManager {
   // Keyboard shortcuts
   initializeKeyboardShortcuts() {
     document.addEventListener("keydown", (event) => {
-      if (event.ctrlKey && event.key === "l") {
+      if (event.key === "Escape") {
+        // Handle ESC to exit TUI mode or navigate away from TUI pages
+        event.preventDefault();
+        
+        const currentSection = window.tmuxManager && window.tmuxManager.currentSection;
+        
+        if (window.terminalUI && window.terminalUI.isTuiMode()) {
+          // Exit TUI mode in terminal
+          window.terminalUI.exitTuiMode();
+          window.terminalUI.clearOutput();
+          window.terminalUI.displayOutput("TUI mode exited. Type 'help' for available commands.", "response");
+          // Focus input for immediate typing
+          setTimeout(() => window.inputManager.focusInput(), 10);
+        } else if (currentSection === 'blogs') {
+          // Check if we're viewing a blog detail, if so go back to blog list
+          const blogManager = window.commandManager && window.commandManager.blogManager;
+          if (blogManager && (blogManager.currentState === 'reading' || blogManager.currentState === 'preview')) {
+            // Navigate back to blog list
+            window.terminalUI.executeTuiAction(null, 'backToBlogList');
+          } else {
+            // Navigate to terminal from blog list page
+            window.tmuxManager.switchTmuxPane('terminal');
+            setTimeout(() => window.inputManager.focusInput(), 100);
+          }
+        } else if (currentSection === 'projects') {
+          // Check if we're viewing a project detail, if so go back to project list
+          const projectManager = window.commandManager && window.commandManager.projectManager;
+          if (projectManager && projectManager.currentState === 'viewing') {
+            // Navigate back to project list
+            window.terminalUI.executeTuiAction(null, 'backToProjectList');
+          } else {
+            // Navigate to terminal from project list page
+            window.tmuxManager.switchTmuxPane('terminal');
+            setTimeout(() => window.inputManager.focusInput(), 100);
+          }
+        }
+      } else if (event.ctrlKey && event.key === "l") {
         event.preventDefault();
         window.commandManager.clearTerminal();
       } else if (event.ctrlKey && event.key === "u") {
