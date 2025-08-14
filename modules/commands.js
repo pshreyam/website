@@ -958,11 +958,13 @@ export class CommandManager {
       document.body.classList.add("light-theme");
       window.uiManager.currentTheme = "light";
       localStorage.setItem("theme", "light");
+      window.uiManager.updateThemeIcon();
       return "Switched to Light Theme.";
     } else {
       document.body.classList.remove("light-theme");
       window.uiManager.currentTheme = "dark";
       localStorage.setItem("theme", "dark");
+      window.uiManager.updateThemeIcon();
       return "Switched to Dark Theme.";
     }
   }

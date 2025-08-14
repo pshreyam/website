@@ -36,11 +36,42 @@
         </div>
       </div>
       <div class="tmux-right">
-        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle theme (Light/Dark)">
-          <i class="fa-solid fa-palette"></i>
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Switch to light theme">
+          <i class="fa-solid fa-sun" id="themeIcon"></i>
         </button>
-        <span class="tmux-info">"Terminal.local" 08:23 14-Aug-25</span>
+        <span class="tmux-info">"Terminal.local"</span>
+        <!-- Hamburger menu button (mobile only) -->
+        <button class="hamburger-menu" id="hamburgerMenu" title="Toggle navigation menu">
+          <div class="hamburger-lines">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+          </div>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile navigation menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <nav class="mobile-nav">
+        <div class="mobile-nav-items">
+          <a href="#" class="mobile-nav-item" data-section="home">
+            <span class="nav-number">0:</span>Home
+          </a>
+          <a href="#" class="mobile-nav-item" data-section="blogs">
+            <span class="nav-number">1:</span>Blogs
+          </a>
+          <a href="#" class="mobile-nav-item" data-section="projects">
+            <span class="nav-number">2:</span>Projects
+          </a>
+          <a href="#" class="mobile-nav-item" data-section="contacts">
+            <span class="nav-number">3:</span>Contacts
+          </a>
+          <a href="#" class="mobile-nav-item" data-section="terminal">
+            <span class="nav-number">4:</span>Terminal
+          </a>
+        </div>
+      </nav>
     </div>
 
     <!-- terminal -->

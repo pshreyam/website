@@ -12,6 +12,24 @@ export class UIManager {
     if (this.currentTheme === "light") {
       document.body.classList.add("light-theme");
     }
+    this.updateThemeIcon();
+  }
+
+  updateThemeIcon() {
+    const themeIcon = document.getElementById('themeIcon');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    
+    if (themeIcon && themeToggleBtn) {
+      if (this.currentTheme === "light") {
+        // Light theme -> show moon icon (clicking will switch to dark)
+        themeIcon.className = "fa-solid fa-moon";
+        themeToggleBtn.title = "Switch to dark theme";
+      } else {
+        // Dark theme -> show sun icon (clicking will switch to light)
+        themeIcon.className = "fa-solid fa-sun";
+        themeToggleBtn.title = "Switch to light theme";
+      }
+    }
   }
 
   // Introduction management
@@ -36,7 +54,7 @@ export class UIManager {
     
     const tmuxInfo = document.querySelector('.tmux-info');
     if (tmuxInfo) {
-      tmuxInfo.textContent = `"Terminal.local" ${timeString} ${dateString}`;
+      tmuxInfo.textContent = `${dateString}`;
     }
   }
 

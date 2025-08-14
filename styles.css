@@ -235,7 +235,8 @@ body {
   padding: 4px 8px;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: normal;
   transition: background-color 0.2s ease, color 0.2s ease;
   display: flex;
   align-items: center;
@@ -272,6 +273,12 @@ body {
   /* margin-bottom: 10px; Ensure space between output and input */
   height: auto; /* This can also have a fixed height */
   overflow-y: none; /* Do not allow overflow for this */
+}
+
+/* Remove all output spacing in TUI mode - TUI should start immediately after tmux bar */
+.terminal.tui-mode .output {
+  margin: 0;
+  padding: 0;
 }
 
 .input-container {
@@ -350,6 +357,158 @@ body {
   background-color: var(--active-bg);
   color: var(--active-text);
   font-weight: bold;
+}
+
+/* Hamburger Menu Styles */
+.hamburger-menu {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  z-index: 1001;
+}
+
+.hamburger-menu:hover {
+  background-color: var(--hover-bg);
+}
+
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+}
+
+.hamburger-lines .line {
+  height: 2px;
+  width: 100%;
+  background-color: var(--text-color);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Hamburger animation to X */
+.hamburger-menu.active .line1 {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.active .line2 {
+  opacity: 0;
+}
+
+.hamburger-menu.active .line3 {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.mobile-nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--terminal-bg);
+  padding-top: 80px; /* Account for tmux bar */
+  box-sizing: border-box;
+}
+
+.mobile-nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 2em;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 1.5em;
+  background-color: var(--disabled-bg);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: 2px solid var(--border-color);
+  gap: 0.5em;
+}
+
+.mobile-nav-item:hover {
+  background-color: var(--hover-bg);
+  color: var(--hover-text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.mobile-nav-item.active {
+  background-color: var(--active-bg);
+  color: var(--active-text);
+  border-color: var(--active-bg);
+}
+
+.mobile-nav-item .nav-number {
+  color: var(--command-color);
+  font-weight: bold;
+  margin-right: 0.3em;
+}
+
+.mobile-nav-item.active .nav-number {
+  color: var(--active-text);
+}
+
+/* Light theme adjustments for mobile menu */
+.light-theme .mobile-nav {
+  background: var(--terminal-bg);
+}
+
+.light-theme .mobile-nav-item {
+  background-color: var(--disabled-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.light-theme .mobile-nav-item:hover {
+  background-color: var(--hover-bg);
+  color: var(--hover-text);
+  box-shadow: var(--shadow-dark);
+}
+
+.light-theme .mobile-nav-item.active {
+  background-color: var(--active-bg);
+  color: var(--active-text);
+  border-color: var(--active-bg);
+}
+
+.light-theme .hamburger-lines .line {
+  background-color: var(--text-color);
 }
 
 @media print {
@@ -663,6 +822,18 @@ code {
   background: var(--tag-bg);
   border-color: var(--command-color);
   color: var(--command-color);
+  padding: 0.4em 0.8em;
+  border-radius: 18px;
+  font-size: 0.85em;
+  font-weight: 500;
+  min-height: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
 .tag-btn:hover {
@@ -762,7 +933,15 @@ code {
   border-color: var(--command-color);
   color: var(--command-color);
   font-size: 0.8em;
-  padding: 0.3em 0.6em;
+  padding: 0.4em 0.8em;
+  min-height: 36px;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-weight: 500;
 }
 
 .tag-nav:hover {
@@ -804,18 +983,23 @@ code {
   height: 100%;
   min-height: calc(100vh - 120px); /* Ensure consistent minimum height */
   max-height: calc(100vh - 120px); /* Account for tmux bar and padding */
+  margin: 0;
+  padding: 0;
 }
 
 /* TUI Mode Styles */
 .terminal.tui-mode {
-  padding: 0;
+  padding: 0 !important; /* Override all terminal padding - TUI replaces terminal completely */
   overflow: hidden;
+  height: calc(100vh - 32px); /* Only subtract tmux bar */
 }
 
 .terminal.tui-mode .tui-container {
   min-height: calc(100vh - 32px); /* Only subtract tmux bar */
   max-height: calc(100vh - 32px);
   border-radius: 0;
+  margin: 0;
+  height: 100%;
 }
 
 .tui-header {
@@ -825,8 +1009,10 @@ code {
   padding: 0.8em 1em;
   background: var(--terminal-bg);
   backdrop-filter: blur(10px);
-  border-radius: 8px 8px 0 0;
+  border-radius: 0;
   flex-shrink: 0;
+  margin: 0;
+  /* No border to maintain seamless connection with tmux bar */
 }
 
 .tui-header-top {
@@ -1002,11 +1188,18 @@ code {
   background: var(--tag-bg);
   border: none;
   color: var(--command-color);
-  padding: 0.2em 0.6em;
-  border-radius: 12px;
+  padding: 0.4em 0.8em;
+  border-radius: 18px;
   font-size: 0.85em;
   font-weight: 500;
   transition: all 0.2s ease;
+  min-height: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .blog-tags .tag-btn:hover {
@@ -1168,6 +1361,16 @@ code {
   border: none;
   color: var(--command-color);
   font-size: 0.8em;
+  padding: 0.4em 0.8em;
+  border-radius: 18px;
+  font-weight: 500;
+  min-height: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .tui-action.tag-btn:hover {
@@ -1260,18 +1463,27 @@ code {
 .tech-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em;
-  margin-top: 0.5em;
+  gap: 0.6em;
+  margin-top: 0.6em;
+  align-items: center;
 }
 
 .tech-tag {
   background: var(--tag-bg);
   border: none;
   color: var(--command-color);
-  padding: 0.3em 0.6em;
-  border-radius: 5px;
-  font-size: 0.9em;
+  padding: 0.4em 0.8em;
+  border-radius: 18px;
+  font-size: 0.85em;
   transition: all 0.2s ease;
+  min-height: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-weight: 500;
 }
 
 .tech-tag:hover {
@@ -1306,7 +1518,8 @@ code {
 
 /* Light theme adjustments */
 .light-theme .tui-header, .light-theme .tui-footer {
-  background: var(--overlay-very-light);
+  background: var(--terminal-bg);
+  /* No border adjustments needed - maintaining seamless connection */
 }
 
 .light-theme .blog-item, .light-theme .project-item {
@@ -1475,18 +1688,216 @@ code {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .tui-header-top {
-    flex-direction: column;
-    gap: 1em;
-    text-align: center;
+  /* Adjust mobile menu for mobile screen */
+  .mobile-nav {
+    padding-top: 80px; /* Account for mobile tmux bar height */
+  }
+  /* Base typography adjustments for mobile */
+  body {
+    font-size: 12px;
   }
 
-  .tui-nav-left, .tui-nav-right, .tui-nav-center {
+  /* Tmux status bar mobile optimizations */
+  .tmux-status-bar {
+    padding: 8px 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: auto;
+    gap: 12px;
+  }
+
+  .tmux-left {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .session-name {
+    font-size: 14px;
+  }
+
+  .tmux-center {
+    display: none; /* Hide center section on mobile */
+  }
+
+  .tmux-panes {
+    display: none !important; /* Hide normal navigation on mobile */
+  }
+
+  .tmux-pane {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .tmux-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+  }
+
+  .theme-toggle-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    min-height: 36px;
+    min-width: 36px;
+    order: 1; /* Theme toggle first */
+  }
+
+  /* Show hamburger menu in right section on mobile */
+  .hamburger-menu {
+    display: block !important;
+    order: 2; /* Hamburger after theme toggle */
+  }
+
+  .tmux-info {
+    font-size: 11px;
+    display: none; /* Hide on mobile to save space */
+  }
+
+  /* Terminal layout optimizations */
+  .terminal {
+    padding: 15px 12px;
+    height: calc(100vh - 80px); /* Account for expanded tmux bar */
+  }
+
+  .output {
+    margin-bottom: 15px;
+  }
+
+  .input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .prompt {
+    padding-right: 6px;
+    flex-shrink: 0;
+  }
+
+  #input {
+    font-size: 12px;
+    min-height: 32px;
+    padding: 8px 0;
+  }
+
+  /* Profile image mobile optimization */
+  .profile-image {
+    max-width: 90%;
+    height: 100px;
+    margin-top: 8px;
+  }
+
+  /* Tooltip adjustments for mobile */
+  .tooltip {
+    font-size: 11px;
+    padding: 6px 10px;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* TUI components mobile optimization */
+  .tui-header {
+    padding: 1em 0.8em;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--terminal-bg);
+    border-radius: 0;
+    margin: 0;
+    /* Remove border to eliminate visual gap with tmux bar */
+  }
+
+  .tui-header-top {
+    flex-direction: column;
+    gap: 0.8em;
+    text-align: center;
+    position: static;
+  }
+
+  .tui-nav-left {
+    position: static;
+    transform: none;
     flex: none;
+    width: 100%;
+    text-align: left;
+    order: 1;
+  }
+
+  .tui-nav-center {
+    flex: none;
+    width: 100%;
+    text-align: center;
+    order: 2;
+  }
+
+  .tui-nav-right {
+    flex: none;
+    width: 100%;
+    text-align: right;
+    order: 3;
+  }
+
+  .tui-action.back-btn {
+    padding: 0.5em 0;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    width: fit-content;
+  }
+
+  .back-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+  }
+
+  .tui-title {
+    font-size: 1.1em;
+    margin: 0.2em 0;
+    line-height: 1.3;
+  }
+
+  .selected-tags-section {
+    margin-top: 0.6em;
+    padding-top: 0.6em;
+  }
+
+  .selected-tags-label {
+    font-size: 0.8em;
+    margin-bottom: 0.4em;
   }
 
   .selected-tags {
     justify-content: center;
+    gap: 0.4em;
+  }
+
+  .selected-tag-badge {
+    font-size: 0.75em;
+    padding: 0.25em 0.5em;
+    border-radius: 12px;
+  }
+
+  .clear-all-tags {
+    font-size: 0.75em;
+    padding: 0.25em 0.6em;
+    border-radius: 12px;
   }
 
   .blog-header {
@@ -1499,29 +1910,49 @@ code {
 
   .blog-date {
     font-size: 0.8em;
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 0.3em;
   }
 
   .blog-title {
-    font-size: 1.2em;
+    font-size: 1.1em;
+    line-height: 1.2;
+  }
+
+  .blog-summary {
+    font-size: 0.9em;
+    line-height: 1.4;
   }
 
   .blog-tags {
-    gap: 0.4em;
-    padding-top: 0.6em;
+    gap: 0.6em;
+    padding-top: 1em;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   .blog-tags .tag-btn {
-    font-size: 0.75em;
-    padding: 0.15em 0.4em;
+    font-size: 0.85em;
+    padding: 0.6em 1em;
+    min-height: 24px; /* Improved touch target size */
+    min-width: 24px; /* Ensure minimum touch width */
+    border-radius: 22px; /* Half of min-height for pill shape */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
   }
 
   .blog-item, .project-item {
-    padding: 1.2em 1.5em;
+    padding: 1.2em 1.2em;
     margin-bottom: 1.5em;
   }
 
   .tui-content {
-    padding: 1em 1.5em 1em 1.5em;
+    padding: 1em 1.2em;
   }
 
   .project-tags-header {
@@ -1530,48 +1961,445 @@ code {
     gap: 1em;
   }
 
-  .blog-date {
-    margin-left: 0;
-    padding-left: 0;
-    margin-top: 0.3em;
-  }
-
   .blog-actions, .blog-related-actions {
     gap: 0.3em;
+    flex-wrap: wrap;
   }
 
   .tui-action.nav-btn {
-    padding: 0.3em 0.5em;
-    font-size: 0.8em;
+    padding: 0.5em 0.8em;
+    font-size: 0.85em;
+    min-height: 36px;
   }
 
   .tui-action.action-btn {
-    padding: 0.2em 0.4em;
+    padding: 0.4em 0.6em;
     font-size: 0.8em;
+    min-height: 32px;
+  }
+
+  .tui-action.tag-btn {
+    padding: 0.6em 1em;
+    font-size: 0.8em;
+    min-height: 24px; /* Proper touch target size */
+    min-width: 24px; /* Ensure minimum touch width */
+    border-radius: 22px; /* Half of min-height for pill shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .tui-content {
+    padding: 1em 0.8em;
+  }
+
+  /* TUI container mobile height adjustments */
+  .tui-container {
+    min-height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
+    margin: 0;
+    padding: 0;
+  }
+
+  .terminal.tui-mode {
+    height: calc(100vh - 80px); /* Account for mobile tmux bar height */
+    padding: 0 !important; /* Override mobile terminal padding - TUI replaces terminal */
+  }
+
+  .terminal.tui-mode .tui-container {
+    min-height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .blog-actions {
-    padding-left: 1em;
+    padding-left: 0.5em;
   }
 
   .action-btn {
     margin: 0.2em 0.3em 0.2em 0;
-    padding: 0.2em 0.4em;
+    padding: 0.3em 0.5em;
     font-size: 0.8em;
+    min-height: 28px;
   }
 
   .nav-btn {
     margin: 0.2em 0.3em 0.2em 0;
-    padding: 0.3em 0.5em;
+    padding: 0.4em 0.6em;
     font-size: 0.8em;
+    min-height: 32px;
   }
 
   .blog-navigation, .blog-footer {
-    padding: 0.5em;
+    padding: 0.6em;
   }
 
   .nav-separator {
     display: block;
     margin: 0.3em 0;
+  }
+
+  /* Blog content mobile optimizations */
+  .blog-content h1 {
+    font-size: 1.4em;
+    margin: 0.4em 0 0.3em 0;
+  }
+
+  .blog-content h2 {
+    font-size: 1.2em;
+    margin: 0.5em 0 0.2em 0;
+  }
+
+  .blog-content h3 {
+    font-size: 1.1em;
+    margin: 0.4em 0 0.2em 0;
+  }
+
+  .blog-content p {
+    margin: 0.4em 0;
+    line-height: 1.5;
+  }
+
+  .blog-content code {
+    font-size: 0.8em;
+    padding: 0.1em 0.3em;
+  }
+
+  .blog-content pre {
+    padding: 0.8em;
+    font-size: 0.8em;
+    overflow-x: auto;
+  }
+
+  .blog-content ul, .blog-content ol {
+    margin: 0.3em 0 0.4em 1.5em;
+  }
+
+  /* Project content mobile optimizations */
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8em;
+  }
+
+  .project-title.tui-action {
+    font-size: 1.1em;
+  }
+
+  .project-tech {
+    font-size: 0.8em;
+  }
+
+  .project-links {
+    gap: 0.3em;
+  }
+
+  .tech-list {
+    gap: 0.6em;
+    align-items: center;
+  }
+
+  .tech-tag {
+    font-size: 0.85em;
+    padding: 0.6em 1em;
+    min-height: 44px; /* Proper touch target size */
+    min-width: 44px; /* Ensure minimum touch width */
+    border-radius: 22px; /* Half of min-height for pill shape */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  /* Additional mobile tag optimizations */
+  .tag-nav {
+    padding: 0.6em 1em;
+    font-size: 0.85em;
+    border-radius: 22px;
+    min-height: 44px; /* Proper touch target size */
+    min-width: 44px; /* Ensure minimum touch width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .project-tech-header {
+    font-size: 1em;
+  }
+
+  .project-tech {
+    font-size: 0.8em;
+  }
+}
+
+/* Additional small mobile screens (phones in portrait) */
+@media (max-width: 480px) {
+  /* Adjust mobile menu for small mobile screen */
+  .mobile-nav {
+    padding-top: 75px; /* Account for smaller mobile tmux bar height */
+  }
+  body {
+    font-size: 11px;
+  }
+
+  .tmux-status-bar {
+    padding: 6px 8px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .tmux-left {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .session-name {
+    font-size: 12px;
+  }
+
+  .tmux-center {
+    display: none; /* Hide center section on small mobile */
+  }
+
+  .tmux-panes {
+    display: none !important; /* Keep hidden on small mobile */
+  }
+
+  .tmux-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+  }
+
+  .theme-toggle-btn {
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: normal;
+    min-height: 32px;
+    min-width: 32px;
+    order: 1; /* Theme toggle first */
+  }
+
+  /* Ensure hamburger is visible on small mobile */
+  .hamburger-menu {
+    display: block !important;
+    order: 2; /* Hamburger after theme toggle */
+  }
+
+  .tmux-pane {
+    padding: 6px 10px;
+    font-size: 10px;
+    min-height: 32px;
+  }
+
+  .terminal {
+    padding: 10px 8px;
+    height: calc(100vh - 75px);
+  }
+
+  #input {
+    font-size: 11px;
+    min-height: 28px;
+  }
+
+  .blog-item, .project-item {
+    padding: 1em;
+    margin-bottom: 1.2em;
+  }
+
+  .tui-content {
+    padding: 0.8em;
+  }
+
+  .blog-title {
+    font-size: 1em;
+  }
+
+  .blog-summary {
+    font-size: 0.85em;
+  }
+
+  .blog-tags {
+    gap: 0.5em;
+    padding-top: 0.8em;
+    align-items: center;
+  }
+
+  .blog-tags .tag-btn {
+    font-size: 0.8em;
+    padding: 0.5em 0.8em;
+    min-height: 24px; /* Maintain proper touch target on small screens */
+    min-width: 24px; /* Ensure minimum touch width */
+    border-radius: 22px; /* Half of min-height for pill shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .action-btn, .nav-btn {
+    font-size: 0.75em;
+    padding: 0.2em 0.4em;
+    min-height: 24px;
+  }
+
+  .tui-header {
+    padding: 0.8em 0.6em;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--terminal-bg);
+    border-radius: 0;
+    margin: 0;
+    /* Remove border to eliminate visual gap with tmux bar */
+  }
+
+  .tui-title {
+    font-size: 1em;
+  }
+
+  .tui-action.back-btn {
+    font-size: 0.8em;
+    padding: 0.4em 0;
+  }
+
+  .back-arrow {
+    font-size: 0.8em;
+  }
+
+  .selected-tag-badge {
+    font-size: 0.7em;
+    padding: 0.2em 0.4em;
+  }
+
+  .clear-all-tags {
+    font-size: 0.7em;
+    padding: 0.2em 0.5em;
+  }
+
+  .tui-action.nav-btn {
+    font-size: 0.75em;
+    padding: 0.4em 0.6em;
+    min-height: 32px;
+  }
+
+  .tui-action.action-btn {
+    font-size: 0.75em;
+    padding: 0.3em 0.5em;
+    min-height: 28px;
+  }
+
+  .tui-action.tag-btn {
+    font-size: 0.75em;
+    padding: 0.5em 0.8em;
+    min-height: 24px; /* Maintain proper touch target on small screens */
+    min-width: 24px; /* Ensure minimum touch width */
+    border-radius: 22px; /* Half of min-height for pill shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .tui-content {
+    padding: 0.8em 0.6em;
+  }
+
+  /* TUI container small mobile height adjustments */
+  .tui-container {
+    min-height: calc(100vh - 75px);
+    max-height: calc(100vh - 75px);
+    margin: 0;
+    padding: 0;
+  }
+
+  .terminal.tui-mode {
+    height: calc(100vh - 75px); /* Account for small mobile tmux bar height */
+    padding: 0 !important; /* Override small mobile terminal padding - TUI replaces terminal */
+  }
+
+  /* Remove output margin in TUI mode for small mobile */
+  .terminal.tui-mode .output {
+    margin: 0;
+    padding: 0;
+  }
+
+  .terminal.tui-mode .tui-container {
+    min-height: calc(100vh - 75px);
+    max-height: calc(100vh - 75px);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .blog-content h1 {
+    font-size: 1.2em;
+  }
+
+  .blog-content h2 {
+    font-size: 1.1em;
+  }
+
+  .blog-content h3 {
+    font-size: 1em;
+  }
+
+  .profile-image {
+    height: 80px;
+  }
+
+  /* Additional small mobile tag optimizations */
+  .project-tech-header {
+    font-size: 0.9em;
+  }
+
+  .project-tech {
+    font-size: 0.75em;
+  }
+
+  .tech-list {
+    gap: 0.5em;
+    align-items: center;
+  }
+
+  .tech-tag {
+    font-size: 0.8em;
+    padding: 0.5em 0.8em;
+    min-height: 44px; /* Maintain proper touch target on small screens */
+    min-width: 44px; /* Ensure minimum touch width */
+    border-radius: 22px; /* Half of min-height for pill shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .tag-nav {
+    font-size: 0.8em;
+    padding: 0.5em 0.8em;
+    min-height: 44px; /* Maintain proper touch target on small screens */
+    min-width: 44px; /* Ensure minimum touch width */
+    border-radius: 22px; /* Half of min-height for pill shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    font-weight: 500;
   }
 }
