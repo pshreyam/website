@@ -11,16 +11,87 @@ body {
   font-size: 14px;
   margin: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   height: 100vh;
+}
+
+/* tmux Status Bar Styles */
+.tmux-status-bar {
+  background-color: #282a36;
+  color: #ffffff;
+  padding: 4px 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #44475a;
+  min-height: 24px;
+  font-weight: normal;
+  font-family: "Fira Code", "Courier New", Courier, monospace;
+}
+
+.tmux-left {
+  display: flex;
+  align-items: center;
+}
+
+.session-name {
+  color: #38cda3;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.tmux-center {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.tmux-panes {
+  display: flex;
+  gap: 8px;
+}
+
+.tmux-pane {
+  padding: 4px 8px;
+  cursor: pointer;
+  background-color: #44475a;
+  color: #c5c8c6;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+}
+
+.tmux-pane:hover {
+  background-color: #6272a4;
+  color: #ffffff;
+}
+
+.tmux-pane.active {
+  background-color: #38cda3;
+  color: #282a36;
+  font-weight: bold;
+}
+
+.tmux-right {
+  display: flex;
+  align-items: center;
+}
+
+.tmux-info {
+  color: #bfc968;
+  font-size: 14px;
 }
 
 .terminal {
   padding: 25px 20px;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 32px); /* Subtract tmux bar height */
   overflow-y: scroll;
   background-color: #282a36;
+  flex: 1;
 }
 
 .output {
@@ -106,6 +177,39 @@ body {
   color: #787d7a;
 }
 
+/* Light theme styles for tmux */
+.light-theme .tmux-status-bar {
+  background-color: #f0f0f0;
+  color: #000000;
+  border-bottom: 1px solid #cccccc;
+}
+
+.light-theme .session-name {
+  color: #008cba;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.light-theme .tmux-pane {
+  background-color: #e0e0e0;
+  color: #555555;
+}
+
+.light-theme .tmux-pane:hover {
+  background-color: #cccccc;
+  color: #000000;
+}
+
+.light-theme .tmux-pane.active {
+  background-color: #008cba;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.light-theme .tmux-info {
+  color: #666666;
+}
+
 @media print {
   .input-container {
     display: none !important;
@@ -126,4 +230,53 @@ body {
 code {
   font-size: 0.9em;
   font-weight: lighter;
+}
+
+/* Tooltip styles */
+.input-container {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background-color: #44475a;
+  color: #f8f8f2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
+  margin-bottom: 8px;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #44475a;
+}
+
+.tooltip.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.light-theme .tooltip {
+  background-color: #666666;
+  color: #ffffff;
+}
+
+.light-theme .tooltip::after {
+  border-top-color: #666666;
 }

@@ -16,9 +16,30 @@
     />
   </head>
   <body>
+    <!-- tmux status bar -->
+    <div class="tmux-status-bar">
+      <div class="tmux-left">
+        <span class="session-name">[Shreyam Pokharel]</span>
+      </div>
+      <div class="tmux-center">
+        <div class="tmux-panes">
+          <span class="tmux-pane active" data-section="home">0:Home</span>
+          <span class="tmux-pane" data-section="blogs">1:Blogs</span>
+          <span class="tmux-pane" data-section="projects">2:Projects</span>
+          <span class="tmux-pane" data-section="contacts">3:Contacts</span>
+          <span class="tmux-pane" data-section="terminal">4:Terminal</span>
+        </div>
+      </div>
+      <div class="tmux-right">
+        <span class="tmux-info">"Terminal.local" 08:23 14-Aug-25</span>
+      </div>
+    </div>
+
+    <!-- terminal -->
     <div class="terminal" id="terminal">
       <div class="output" id="output"></div>
       <div class="input-container">
+        <div class="tooltip" id="inputTooltip">Click "4:Terminal" to use commands</div>
         <span class="prompt"><i class="fa-solid fa-arrow-right"></i></span>
         <input
           type="text"
@@ -30,6 +51,6 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
