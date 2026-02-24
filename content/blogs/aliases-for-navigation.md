@@ -1,6 +1,13 @@
++++
+title = 'How I used aliases to speed up terminal navigation'
+date = 2025-08-14
+description = 'A practical set of shell functions I used to speed up navigation and repo workflows.'
+tags = ['terminal', 'productivity', 'zsh', 'linux']
++++
+
 ## Manage dotfiles
 
-```
+```bash
 function dotfiles() {
     /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
@@ -8,7 +15,7 @@ function dotfiles() {
 
 ## Clone remote repo to specified location
 
-```
+```bash
 function clone() {
     ret=$(pwd)
     cd ~/Downloads/repos/all
@@ -19,7 +26,7 @@ function clone() {
 
 ## Change directory into the selected repository
 
-```
+```bash
 function cr() {
     reply=$(echo "$(/bin/ls -1 ~/Downloads/repos/active)" | fzf --border=rounded --height=50% --layout=reverse --header="Choose Repository To cd Into" --header-first --prompt="› " --pointer="➜")
     if [[ -z $reply ]];then
@@ -32,7 +39,7 @@ function cr() {
 
 ## Add repo to active repos
 
-```
+```bash
 function mar() {
     reply=$(echo "$(/bin/ls -1 ~/Downloads/repos/all)" | fzf --border=rounded --height=50% --layout=reverse --header="Choose Repository To Make Active" --header-first --prompt="› " --pointer="➜")
     if [[ -z $reply ]];then
@@ -46,7 +53,7 @@ function mar() {
 
 ## Remove repo from active repos
 
-```
+```bash
 function rfar() {
     reply=$(echo "$(/bin/ls -1 ~/Downloads/repos/active)" | fzf --border=rounded --height=50% --layout=reverse --header="Choose Repository To Remove From Active" --header-first --prompt="› " --pointer="➜")
     if [[ -z $reply ]];then
@@ -59,7 +66,8 @@ function rfar() {
 ```
 
 ## Get the absolute path of the selected file and copy it to the clipboard
-```
+
+```bash
 function path() {
     if [[ $# == 0 ]];then
         search_path=`pwd`

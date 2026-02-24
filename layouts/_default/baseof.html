@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add("dark-theme");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="{{ "css/site.css" | relURL }}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="{{ "/" | relURL }}">{{ .Site.Params.name }}</a>
+        <div class="nav-controls">
+          <nav class="site-nav" aria-label="Primary">
+            <a href="{{ "/" | relURL }}">Home</a>
+            <a href="{{ "/#about" | relURL }}">About</a>
+            <a href="{{ "/#experience" | relURL }}">Experience</a>
+            <a href="{{ "/#projects" | relURL }}">Projects</a>
+            <a href="{{ "/#blogs" | relURL }}">Blogs</a>
+            <a href="{{ "/#contact" | relURL }}">Contact</a>
+          </nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">Dark</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <script src="{{ "js/theme.js" | relURL }}"></script>
+  </body>
+</html>

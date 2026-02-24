@@ -1,0 +1,60 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'Shreyam Pokharel'
+
+[taxonomies]
+tag = 'tags'
+
+[params]
+name = 'Shreyam Pokharel'
+role = 'Software Engineer'
+summary = 'Backend engineer focused on Python systems, scalable APIs, and practical product engineering. I build reliable software with clean architecture and measurable outcomes.'
+email = 'pshreyam@gmail.com'
+linkedin = 'https://www.linkedin.com/in/shreyam-pokharel/'
+github = 'https://github.com/pshreyam'
+
+[[params.experience]]
+title = 'Backend Engineer'
+company = 'Docsumo'
+period = 'Jul 2023 - Present'
+
+[[params.experience]]
+title = 'Python Intern'
+company = 'Docsumo'
+period = 'Apr 2023 - Jul 2023'
+
+[[params.education]]
+degree = 'BE in Computer Engineering'
+institution = 'Kathmandu University'
+period = '2018 - 2023'
+
+[[params.education]]
+degree = 'High School'
+institution = 'Capital College and Research Center'
+period = '2016 - 2018'
+
+[menu]
+  [[menu.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 1
+
+  [[menu.main]]
+    name = 'Blogs'
+    pageRef = '/blogs'
+    weight = 2
+
+  [[menu.main]]
+    name = 'Projects'
+    pageRef = '/projects'
+    weight = 3
+
+  [[menu.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 4
+
+  [[menu.main]]
+    name = 'Contact'
+    pageRef = '/contact'
+    weight = 5

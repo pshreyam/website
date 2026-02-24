@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="section-heading">
+  <h1>{{ .Title }}</h1>
+  <p>Explore content by topic.</p>
+</section>
+
+<section class="cards terms-grid">
+  {{ range .Data.Terms.Alphabetical }}
+    <a class="card term-card" href="{{ .Page.RelPermalink }}">
+      <h2>{{ .Term }}</h2>
+      <p>{{ .Count }} {{ if eq .Count 1 }}item{{ else }}items{{ end }}</p>
+    </a>
+  {{ end }}
+</section>
+{{ end }}

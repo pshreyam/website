@@ -1,0 +1,20 @@
+<svg width="520" height="520" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(184 166) rotate(48) scale(332)">
+      <stop stop-color="#F6CFA8"/>
+      <stop offset="0.56" stop-color="#9FD0B0"/>
+      <stop offset="1" stop-color="#78A8D8"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(346 354) rotate(-130) scale(290)">
+      <stop stop-color="#FFF2CE" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#D3E6FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-60" y="-60" width="640" height="640" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+  <g filter="url(#blur)">
+    <path d="M434 238C442 296 427 364 382 406C339 446 275 457 215 445C152 432 88 397 66 339C45 284 66 215 103 168C141 121 192 97 246 84C302 72 362 72 399 110C436 147 425 196 434 238Z" fill="url(#g1)"/>
+    <path d="M446 290C427 362 364 423 292 449C220 473 140 456 93 405C45 356 31 277 58 212C84 148 151 100 223 82C295 64 373 76 423 124C473 172 466 219 446 290Z" fill="url(#g2)"/>
+  </g>
+</svg>

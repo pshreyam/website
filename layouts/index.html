@@ -1,0 +1,131 @@
+{{ define "main" }}
+<section class="hero hero-plain scroll-section" id="home">
+  <div id="about">
+    <h1 class="hero-name">{{ .Site.Params.name }}</h1>
+    <p class="hero-role">{{ .Site.Params.role }}</p>
+    <p class="summary">{{ .Site.Params.summary }}</p>
+    <div class="links icon-links">
+      <a href="mailto:{{ .Site.Params.email }}" aria-label="Email">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13Zm2.1.5L12 11.6 19.9 6H4.1Zm15.9 2.2-7.4 5.3a1 1 0 0 1-1.2 0L4 8.2v9.8h16V8.2Z"/></svg>
+        </span>
+      </a>
+      <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56v10.5h3.38V8.5ZM5.25 3a1.97 1.97 0 1 0 0 3.94 1.97 1.97 0 0 0 0-3.94ZM20.44 12.96c0-3.17-1.69-4.64-3.95-4.64-1.82 0-2.64 1-3.1 1.7V8.5H10v10.5h3.38v-5.86c0-1.54.29-3.03 2.2-3.03 1.88 0 1.9 1.76 1.9 3.13V19H21v-6.04h-.56Z"/></svg>
+        </span>
+      </a>
+      <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.6 2 12.27c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.88 1.55 2.32 1.1 2.89.84.09-.66.34-1.1.62-1.35-2.22-.26-4.56-1.15-4.56-5.1 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.9c.85 0 1.7.12 2.5.36 1.9-1.32 2.74-1.05 2.74-1.05.56 1.4.21 2.45.11 2.71.64.71 1.03 1.62 1.03 2.74 0 3.96-2.35 4.83-4.6 5.08.36.32.68.95.68 1.93 0 1.39-.01 2.5-.01 2.84 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.27C22 6.6 17.52 2 12 2Z"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="{{ "images/shreyam.jpg" | relURL }}" alt="{{ .Site.Params.name }}" class="profile ghibli-photo" />
+  </div>
+</section>
+
+<section class="scroll-section" id="experience">
+  <header class="section-heading">
+    <h1>Experience</h1>
+  </header>
+  <div class="plain-list">
+    {{ range .Site.Params.experience }}
+      <article class="plain-item">
+        <h3>{{ .title }}</h3>
+        <p>{{ .company }}</p>
+        <span>{{ .period }}</span>
+      </article>
+    {{ end }}
+  </div>
+</section>
+
+<section class="scroll-section" id="education">
+  <header class="section-heading">
+    <h1>Education</h1>
+  </header>
+  <div class="plain-list">
+    {{ range .Site.Params.education }}
+      <article class="plain-item">
+        <h3>{{ .degree }}</h3>
+        <p>{{ .institution }}</p>
+        <span>{{ .period }}</span>
+      </article>
+    {{ end }}
+  </div>
+</section>
+
+<section class="scroll-section" id="projects">
+  <header class="section-heading split-heading">
+    <div>
+      <h1>Projects</h1>
+    </div>
+    <a class="section-link" href="{{ "/projects/" | relURL }}">View all projects</a>
+  </header>
+  <div class="feature-list">
+    {{ range first 4 (where .Site.RegularPages "Section" "projects").ByTitle }}
+      <article class="feature-item">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        {{ with .Params.tags }}
+          <div class="tags linked-tags">
+            {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+          </div>
+        {{ end }}
+      </article>
+    {{ end }}
+  </div>
+</section>
+
+<section class="scroll-section" id="blogs">
+  <header class="section-heading split-heading">
+    <div>
+      <h1>Blogs</h1>
+    </div>
+    <a class="section-link" href="{{ "/blogs/" | relURL }}">View all blogs</a>
+  </header>
+  <div class="feature-list">
+    {{ range first 4 (where .Site.RegularPages "Section" "blogs").ByDate.Reverse }}
+      <article class="feature-item">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        <div class="meta-row">
+          {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
+        </div>
+        {{ with .Params.tags }}
+          <div class="tags linked-tags">
+            {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+          </div>
+        {{ end }}
+      </article>
+    {{ end }}
+  </div>
+</section>
+
+<section class="scroll-section" id="contact">
+  <header class="section-heading">
+    <h1>Contact</h1>
+    <p>Open to backend engineering opportunities, collaborations, and technical conversations.</p>
+  </header>
+  <div class="contact-list icon-links">
+    <a href="mailto:{{ .Site.Params.email }}" aria-label="Email">
+      <span class="link-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13Zm2.1.5L12 11.6 19.9 6H4.1Zm15.9 2.2-7.4 5.3a1 1 0 0 1-1.2 0L4 8.2v9.8h16V8.2Z"/></svg>
+      </span>
+    </a>
+    <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <span class="link-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56v10.5h3.38V8.5ZM5.25 3a1.97 1.97 0 1 0 0 3.94 1.97 1.97 0 0 0 0-3.94ZM20.44 12.96c0-3.17-1.69-4.64-3.95-4.64-1.82 0-2.64 1-3.1 1.7V8.5H10v10.5h3.38v-5.86c0-1.54.29-3.03 2.2-3.03 1.88 0 1.9 1.76 1.9 3.13V19H21v-6.04h-.56Z"/></svg>
+      </span>
+    </a>
+    <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <span class="link-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.6 2 12.27c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.88 1.55 2.32 1.1 2.89.84.09-.66.34-1.1.62-1.35-2.22-.26-4.56-1.15-4.56-5.1 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.9c.85 0 1.7.12 2.5.36 1.9-1.32 2.74-1.05 2.74-1.05.56 1.4.21 2.45.11 2.71.64.71 1.03 1.62 1.03 2.74 0 3.96-2.35 4.83-4.6 5.08.36.32.68.95.68 1.93 0 1.39-.01 2.5-.01 2.84 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.27C22 6.6 17.52 2 12 2Z"/></svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+{{ end }}
