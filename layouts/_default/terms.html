@@ -4,12 +4,12 @@
   <p>Explore content by topic.</p>
 </section>
 
-<section class="cards terms-grid">
+<section class="feature-list">
   {{ range .Data.Terms.Alphabetical }}
-    <a class="card term-card" href="{{ .Page.RelPermalink }}">
-      <h2>{{ .Term }}</h2>
+    <article class="feature-item">
+      <h2><a href="{{ .Page.RelPermalink }}">{{ .Term }}</a></h2>
       <p>{{ .Count }} {{ if eq .Count 1 }}item{{ else }}items{{ end }}</p>
-    </a>
+    </article>
   {{ end }}
 </section>
 {{ end }}

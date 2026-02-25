@@ -4,12 +4,13 @@
   <p>All content labeled with this topic.</p>
 </section>
 
-<section class="cards listing-grid">
+<section class="feature-list">
   {{ range .Pages.ByDate.Reverse }}
-    <article class="card post-card">
+    <article class="feature-item">
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ with .Description }}<p>{{ . }}</p>{{ end }}
       <div class="meta-row">
+        <span>{{ .Section | title }}</span>
         {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
       </div>
     </article>
