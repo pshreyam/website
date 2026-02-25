@@ -1,0 +1,20 @@
+{{ define "main" }}
+<section class="section-heading">
+  <h1>{{ .Title }}</h1>
+  <p>Selected work with an emphasis on backend engineering and product-oriented execution.</p>
+</section>
+
+<section class="feature-list">
+  {{ range .RegularPages.ByTitle }}
+    <article class="feature-item">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+        <div class="tags linked-tags">
+          {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+        </div>
+      {{ end }}
+    </article>
+  {{ end }}
+</section>
+{{ end }}

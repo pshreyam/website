@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="section-heading">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<p>{{ . }}</p>{{ end }}
+</section>
+
+<section class="cards">
+  {{ range .Pages.ByDate.Reverse }}
+    <article class="card">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+      <div class="meta-row">
+        {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
+        {{ with .Params.tags }}
+          <div class="tags">
+            {{ range . }}<span>{{ . }}</span>{{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </article>
+  {{ end }}
+</section>
+{{ end }}

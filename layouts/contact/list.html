@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="section-heading">
+  <h1>{{ .Title }}</h1>
+  <p>{{ .Content }}</p>
+</section>
+
+<section class="cards">
+  <a class="card card-link" href="mailto:{{ .Site.Params.email }}">Email: {{ .Site.Params.email }}</a>
+  <a class="card card-link" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn: shreyam-pokharel</a>
+  <a class="card card-link" href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer">GitHub: @pshreyam</a>
+</section>
+{{ end }}

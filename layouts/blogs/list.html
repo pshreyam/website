@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="section-heading">
+  <h1>{{ .Title }}</h1>
+  <p>Notes on software engineering, tooling, and practical workflows.</p>
+</section>
+
+<section class="feature-list">
+  {{ range .RegularPages.ByDate.Reverse }}
+    <article class="feature-item">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+      <div class="meta-row">
+        {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
+      </div>
+      {{ with .Params.tags }}
+        <div class="tags linked-tags">
+          {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+        </div>
+      {{ end }}
+    </article>
+  {{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article class="content content-detail">
+  <header class="section-heading">
+    <h1>{{ .Title }}</h1>
+    <div class="meta-row">
+      {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
+      {{ with .Params.tags }}
+        <div class="tags linked-tags">
+          {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
