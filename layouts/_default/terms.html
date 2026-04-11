@@ -1,12 +1,14 @@
 {{ define "main" }}
-<section class="section-heading">
+<section class="page-hero">
+  <p class="eyebrow">Topics</p>
   <h1>{{ .Title }}</h1>
-  <p>Explore content by topic.</p>
+  <p class="lead-copy">Browse the site by theme and jump directly into the topics that matter most</p>
 </section>
 
-<section class="feature-list">
+<section class="cards-grid page-grid">
   {{ range .Data.Terms.Alphabetical }}
-    <article class="feature-item">
+    <article class="panel-card">
+      <p class="label">Topic</p>
       <h2><a href="{{ .Page.RelPermalink }}">{{ .Term }}</a></h2>
       <p>{{ .Count }} {{ if eq .Count 1 }}item{{ else }}items{{ end }}</p>
     </article>

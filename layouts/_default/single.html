@@ -1,6 +1,7 @@
 {{ define "main" }}
-<article class="content content-detail">
-  <header class="section-heading">
+<article class="article-shell">
+  <header class="page-hero article-hero">
+    <p class="eyebrow">{{ .Section | title }}</p>
     <h1>{{ .Title }}</h1>
     <div class="meta-row">
       {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
@@ -10,9 +11,12 @@
         </div>
       {{ end }}
     </div>
+    {{ with .Description }}<p class="article-summary">{{ . }}</p>{{ end }}
   </header>
-  <div class="prose">
-    {{ .Content }}
+  <div class="article-body">
+    <div class="prose">
+      {{ .Content }}
+    </div>
   </div>
 </article>
 {{ end }}

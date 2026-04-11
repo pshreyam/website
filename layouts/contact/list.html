@@ -1,12 +1,25 @@
 {{ define "main" }}
-<section class="section-heading">
+<section class="page-hero">
+  <p class="eyebrow">Contact</p>
   <h1>{{ .Title }}</h1>
-  <p>{{ .Content }}</p>
+  <div class="lead-copy">{{ .Content }}</div>
 </section>
 
-<section class="cards">
-  <a class="card card-link" href="mailto:{{ .Site.Params.email }}">Email: {{ .Site.Params.email }}</a>
-  <a class="card card-link" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn: shreyam-pokharel</a>
-  <a class="card card-link" href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer">GitHub: @pshreyam</a>
+<section class="cards-grid page-grid">
+  <a class="panel-card contact-card" href="mailto:{{ .Site.Params.email }}">
+    <p class="label">Email</p>
+    <h2>{{ .Site.Params.email }}</h2>
+    <p>Best for opportunities, collaborations, and direct outreach</p>
+  </a>
+  <a class="panel-card contact-card" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer">
+    <p class="label">LinkedIn</p>
+    <h2>shreyam-pokharel</h2>
+    <p>Professional background, updates, and network connection</p>
+  </a>
+  <a class="panel-card contact-card" href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer">
+    <p class="label">GitHub</p>
+    <h2>@pshreyam</h2>
+    <p>Code, experiments, and technical side projects</p>
+  </a>
 </section>
 {{ end }}

@@ -1,16 +1,17 @@
 {{ define "main" }}
-<section class="section-heading">
+<section class="page-hero">
+  <p class="eyebrow">Tag</p>
   <h1>{{ .Title }}</h1>
-  <p>All content labeled with this topic.</p>
+  <p class="lead-copy">All posts and projects collected under this topic</p>
 </section>
 
-<section class="feature-list">
+<section class="cards-grid page-grid">
   {{ range .Pages.ByDate.Reverse }}
-    <article class="feature-item">
+    <article class="panel-card">
+      <p class="label">{{ .Section | title }}</p>
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ with .Description }}<p>{{ . }}</p>{{ end }}
       <div class="meta-row">
-        <span>{{ .Section | title }}</span>
         {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
       </div>
     </article>

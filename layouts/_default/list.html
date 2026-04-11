@@ -1,22 +1,24 @@
 {{ define "main" }}
-<section class="section-heading">
+<section class="page-hero">
+  <p class="eyebrow">Collection</p>
   <h1>{{ .Title }}</h1>
-  {{ with .Content }}<p>{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="lead-copy">{{ . }}</div>{{ end }}
 </section>
 
-<section class="cards">
+<section class="cards-grid page-grid">
   {{ range .Pages.ByDate.Reverse }}
-    <article class="card">
+    <article class="panel-card">
+      <p class="label">{{ .Section | title }}</p>
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ with .Description }}<p>{{ . }}</p>{{ end }}
       <div class="meta-row">
         {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
-        {{ with .Params.tags }}
-          <div class="tags">
-            {{ range . }}<span>{{ . }}</span>{{ end }}
-          </div>
-        {{ end }}
       </div>
+      {{ with .Params.tags }}
+        <div class="tags linked-tags">
+          {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+        </div>
+      {{ end }}
     </article>
   {{ end }}
 </section>

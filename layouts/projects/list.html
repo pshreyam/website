@@ -1,12 +1,14 @@
 {{ define "main" }}
-<section class="section-heading">
+<section class="page-hero">
+  <p class="eyebrow">Projects</p>
   <h1>{{ .Title }}</h1>
-  <p>Selected work with an emphasis on backend engineering and product-oriented execution.</p>
+  <p class="lead-copy">Selected work with an emphasis on backend engineering, product thinking, and dependable implementation</p>
 </section>
 
-<section class="feature-list">
-  {{ range .RegularPages.ByTitle }}
-    <article class="feature-item">
+<section class="cards-grid page-grid">
+  {{ range .RegularPages.ByWeight }}
+    <article class="panel-card panel-card-accent">
+      <p class="label">Project</p>
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ with .Description }}<p>{{ . }}</p>{{ end }}
       {{ with .Params.tags }}

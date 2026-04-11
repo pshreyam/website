@@ -2,6 +2,14 @@ baseURL = '/'
 languageCode = 'en-us'
 title = 'Shreyam Pokharel'
 
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = false
+    style = "monokai"
+
 [taxonomies]
 tag = 'tags'
 
@@ -14,24 +22,16 @@ linkedin = 'https://www.linkedin.com/in/shreyam-pokharel/'
 github = 'https://github.com/pshreyam'
 
 [[params.experience]]
-title = 'Backend Engineer'
 company = 'Docsumo'
-period = 'Jul 2023 - Present'
-
-[[params.experience]]
-title = 'Python Intern'
-company = 'Docsumo'
-period = 'Apr 2023 - Jul 2023'
+roles = [
+  { title = 'Backend Engineer', period = 'Jul 2023 - Present' },
+  { title = 'Python Intern', period = 'Apr 2023 - Jul 2023' }
+]
 
 [[params.education]]
 degree = 'BE in Computer Engineering'
 institution = 'Kathmandu University'
 period = '2018 - 2023'
-
-[[params.education]]
-degree = 'High School'
-institution = 'Capital College and Research Center'
-period = '2016 - 2018'
 
 [menu]
   [[menu.main]]

@@ -1,17 +1,16 @@
 {{ define "main" }}
-<section class="section-heading">
+<section class="page-hero">
+  <p class="eyebrow">Writing</p>
   <h1>{{ .Title }}</h1>
-  <p>Notes on software engineering, tooling, and practical workflows.</p>
+  <p class="lead-copy">Notes on software engineering, terminal workflows, and practical tools that make day-to-day development smoother</p>
 </section>
 
-<section class="feature-list">
+<section class="cards-grid page-grid">
   {{ range .RegularPages.ByDate.Reverse }}
-    <article class="feature-item">
+    <article class="panel-card">
+      <p class="label">{{ with .Date }}{{ .Format "Jan 2, 2006" }}{{ end }}</p>
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ with .Description }}<p>{{ . }}</p>{{ end }}
-      <div class="meta-row">
-        {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
-      </div>
       {{ with .Params.tags }}
         <div class="tags linked-tags">
           {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}

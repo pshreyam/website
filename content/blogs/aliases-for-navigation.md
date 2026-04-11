@@ -1,7 +1,7 @@
 +++
 title = 'How I used aliases to speed up terminal navigation'
-date = 2025-08-14
-description = 'A practical set of shell functions I used to speed up navigation and repo workflows.'
+date = 2022-08-12
+description = 'A practical set of shell functions I used to speed up navigation and repo workflows'
 tags = ['terminal', 'productivity', 'zsh', 'linux']
 +++
 
