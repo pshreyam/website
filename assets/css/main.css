@@ -275,15 +275,19 @@ p {
   height: 1.05rem;
 }
 
-.theme-toggle .icon-moon { display: none; }
+/* The toggle shows the theme it will switch TO, not the current one: moon while
+   light, sun while dark. Mirrors how the theme itself resolves — OS preference
+   unless an explicit [data-theme] choice overrides it. */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: none; }
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
 }
-:root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
-:root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
-:root[data-theme="light"] .theme-toggle .icon-sun { display: block; }
-:root[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 .nav-toggle {
   display: none;
