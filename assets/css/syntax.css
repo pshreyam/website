@@ -1,7 +1,8 @@
 /* Generated using: hugo gen chromastyles --style=monokai */
 
-/* Background */ .bg { color:#f8f8f2;background-color:#0b1120; }
-/* PreWrapper */ .chroma { color:#f8f8f2;background-color:#0b1120;-webkit-text-size-adjust:none; }
+/* Code blocks stay dark in both themes — monokai has no light counterpart. */
+/* Background */ .bg { color:#f8f8f2;background-color:#16181d; }
+/* PreWrapper */ .chroma { color:#f8f8f2;background-color:#16181d;-webkit-text-size-adjust:none; }
 /* Error */ .chroma .err { color:#960050;background-color:#1e0010 }
 /* LineLink */ .chroma .lnlinks { outline:none;text-decoration:none;color:inherit }
 /* LineTableTD */ .chroma .lntd { vertical-align:top;padding:0;margin:0;border:0; }

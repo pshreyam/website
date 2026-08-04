@@ -1,0 +1,13 @@
+{{ define "main" }}
+<section class="page-hero">
+  <h1>{{ .Title }}</h1>
+  <p class="lead">Browse posts and projects by theme.</p>
+</section>
+
+{{- /* Pills, not cards — tags are short and there are a lot of them. */}}
+<div class="tags tag-cloud">
+  {{ range .Data.Terms.Alphabetical }}
+    <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<span class="count">{{ .Count }}</span></a>
+  {{ end }}
+</div>
+{{ end }}

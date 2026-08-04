@@ -1,0 +1,10 @@
+{{ define "main" }}
+<section class="page-hero">
+  <h1>{{ .Title }}</h1>
+  <p class="lead">{{ len .Pages }} {{ if eq (len .Pages) 1 }}item{{ else }}items{{ end }} tagged with this topic.</p>
+</section>
+
+<div class="grid">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}
+</div>
+{{ end }}

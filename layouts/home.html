@@ -1,0 +1,113 @@
+{{ define "main" }}
+{{ $projects := first 4 (where .Site.RegularPages "Section" "projects").ByWeight }}
+{{ $blogs := first 4 (where .Site.RegularPages "Section" "blogs").ByDate.Reverse }}
+
+<section class="hero">
+  <div class="hero-head">
+    {{- /* Source is 400x400, so 140px is the largest slot that stays sharp at
+           2x DPR. Sized to that rather than upscaled into a bigger frame. */}}
+    {{ with resources.Get .Site.Params.portrait }}
+      {{ $x1 := .Resize "140x140 jpg q82" }}
+      {{ $x2 := .Resize "280x280 jpg q82" }}
+      <img
+        class="hero-photo"
+        src="{{ $x1.RelPermalink }}"
+        srcset="{{ $x1.RelPermalink }} 1x, {{ $x2.RelPermalink }} 2x"
+        width="140"
+        height="140"
+        alt="Portrait of {{ $.Site.Params.name }}"
+        fetchpriority="high"
+      />
+    {{ end }}
+    <div>
+      {{ with .Site.Params.status }}
+        <p class="status">
+          <span aria-hidden="true">{{ $.Site.Params.statusEmoji | default "🛠️" }}</span>
+          {{ . }}
+        </p>
+      {{ end }}
+      <h1>{{ .Site.Params.name }}</h1>
+      <p class="hero-role">{{ .Site.Params.role }}</p>
+    </div>
+  </div>
+  <p class="hero-summary">{{ .Site.Params.summary }}</p>
+  <div class="hero-actions">
+    <a class="button button-primary" href="{{ "/projects/" | relURL }}">View projects</a>
+    <a class="button button-secondary" href="{{ "/contact/" | relURL }}">Get in touch</a>
+  </div>
+  <div class="hero-links">
+    {{ partial "social-links.html" . }}
+  </div>
+</section>
+
+<section class="section" id="background">
+  <div class="section-head">
+    <h2>Background</h2>
+  </div>
+  <div class="background-grid">
+    <div>
+      <h3 class="col-head">Experience</h3>
+      <div class="timeline">
+        {{ range .Site.Params.experience }}
+          <article class="timeline-item">
+            <p class="timeline-company">{{ .company }}</p>
+            <div class="timeline-roles">
+              {{ range .roles }}
+                <div class="timeline-role">
+                  <span class="timeline-period">{{ .period }}</span>
+                  <p class="timeline-title">{{ .title }}</p>
+                </div>
+              {{ end }}
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+    <div>
+      <h3 class="col-head">Education</h3>
+      <div class="edu-list">
+        {{ range .Site.Params.education }}
+          <article>
+            <span class="timeline-period">{{ .period }}</span>
+            <p class="timeline-title">{{ .degree }}</p>
+            <p>{{ .institution }}</p>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-head">
+    <h2>Projects</h2>
+    <a class="text-link" href="{{ "/projects/" | relURL }}">All projects</a>
+  </div>
+  <div class="grid">
+    {{ range $projects }}{{ partial "card.html" . }}{{ end }}
+  </div>
+</section>
+
+{{ with $blogs }}
+<section class="section" id="blogs">
+  <div class="section-head">
+    <h2>Writing</h2>
+    <a class="text-link" href="{{ "/blogs/" | relURL }}">All posts</a>
+  </div>
+  <div class="grid">
+    {{ range . }}{{ partial "card.html" . }}{{ end }}
+  </div>
+</section>
+{{ end }}
+
+<section class="cta" id="contact">
+  <div>
+    <h2>Get in touch</h2>
+    <p>Open to backend engineering roles, collaborations, and thoughtful technical conversations.</p>
+  </div>
+  <div class="cta-actions">
+    <a class="button button-primary" href="mailto:{{ .Site.Params.email }}">Email me</a>
+    <a class="button button-secondary" href="{{ "/contact/" | relURL }}">More options</a>
+  </div>
+</section>
+{{ end }}

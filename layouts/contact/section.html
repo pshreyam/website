@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="page-hero">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+</section>
+
+<div class="grid">
+  <article class="card">
+    <p class="card-meta">Email</p>
+    <h3><a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></h3>
+    <p>Best for opportunities, collaborations, and direct outreach.</p>
+  </article>
+  <article class="card">
+    <p class="card-meta">LinkedIn</p>
+    <h3><a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer">shreyam-pokharel</a></h3>
+    <p>Professional background, updates, and network connection.</p>
+  </article>
+  <article class="card">
+    <p class="card-meta">GitHub</p>
+    <h3><a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer">@pshreyam</a></h3>
+    <p>Code, experiments, and technical side projects.</p>
+  </article>
+</div>
+{{ end }}

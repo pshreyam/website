@@ -1,0 +1,38 @@
+{{ define "main" }}
+<article>
+  <header class="page-hero">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    <div class="card-meta">
+      {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end }}
+      {{ if eq .Section "blogs" }}<span class="dot">{{ .ReadingTime }} min read</span>{{ end }}
+    </div>
+    {{ with .Params.tags }}
+      <div class="tags">
+        {{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+      </div>
+    {{ end }}
+  </header>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{ if or .PrevInSection .NextInSection }}
+    <nav class="post-nav" aria-label="More in {{ .Section | title }}">
+      {{ with .PrevInSection }}
+        <a class="prev" href="{{ .RelPermalink }}">
+          <span class="eyebrow">Previous</span>
+          {{ .Title }}
+        </a>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a class="next" href="{{ .RelPermalink }}">
+          <span class="eyebrow">Next</span>
+          {{ .Title }}
+        </a>
+      {{ end }}
+    </nav>
+  {{ end }}
+</article>
+{{ end }}

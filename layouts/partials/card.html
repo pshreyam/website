@@ -1,0 +1,16 @@
+{{- /* One card for any page. Context: a Page. */ -}}
+<article class="card">
+  {{- with .Date }}
+    <div class="card-meta">
+      <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>
+      {{- with $.ReadingTime }}<span class="dot">{{ . }} min read</span>{{ end }}
+    </div>
+  {{- end }}
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{- with .Description }}<p>{{ . }}</p>{{ end }}
+  {{- with .Params.tags }}
+    <div class="tags">
+      {{- range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+    </div>
+  {{- end }}
+</article>

@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; {{ now.Year }} {{ .Site.Params.name }}</p>
+    <nav aria-label="Elsewhere">
+      {{ partial "social-links.html" . }}
+    </nav>
+  </div>
+</footer>

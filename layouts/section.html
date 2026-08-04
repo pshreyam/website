@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{- /* Sort order and copy come from the section's _index.md, so one template serves all. */ -}}
+{{ $pages := cond (eq .Params.sortby "weight") .RegularPages.ByWeight .RegularPages.ByDate.Reverse }}
+
+<section class="page-hero">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="lead">{{ . }}</div>{{ end }}
+</section>
+
+<div class="grid">
+  {{ range $pages }}{{ partial "card.html" . }}{{ end }}
+</div>
+{{ end }}

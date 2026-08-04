@@ -15,6 +15,7 @@
 # production
 /build
 /public
+/resources/_gen
 .hugo_build.lock
 
 # misc
@@ -34,3 +35,4 @@ yarn-error.log*
 
 # vercel
 .vercel
+.claude/

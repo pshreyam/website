@@ -1,6 +1,14 @@
+# MUST become the real origin before launch (e.g. 'https://example.com/').
+# While this is '/', canonical, og:url, og:image and every sitemap <loc> stay
+# relative — which makes sitemap.xml invalid and stops social previews rendering.
 baseURL = '/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Shreyam Pokharel'
+enableRobotsTXT = true
+enableGitInfo = true
+
+[minify]
+  minifyOutput = true
 
 [markup]
   [markup.highlight]
@@ -9,17 +17,29 @@ title = 'Shreyam Pokharel'
     lineNos = false
     noClasses = false
     style = "monokai"
+  [markup.goldmark.renderer]
+    unsafe = true
 
 [taxonomies]
 tag = 'tags'
 
 [params]
 name = 'Shreyam Pokharel'
+initials = 'SP'
 role = 'Software Engineer'
+status = 'Building document extraction pipelines at Docsumo'
+statusEmoji = '🛠️'
+# `summary` is the hero copy. `description` is the meta/SERP line — kept under
+# 160 chars so search engines show it whole instead of clipping it.
 summary = 'Backend engineer focused on Python systems, scalable APIs, and practical product engineering. I build reliable software with clean architecture and measurable outcomes.'
+description = 'Backend engineer at Docsumo building Python systems, scalable APIs, and document extraction pipelines. Projects, writing, and contact details.'
 email = 'pshreyam@gmail.com'
 linkedin = 'https://www.linkedin.com/in/shreyam-pokharel/'
 github = 'https://github.com/pshreyam'
+# Single source of truth for the photo. Lives in assets/ so Hugo re-encodes it
+# for both the hero and the social preview — metadata is dropped on re-encode.
+portrait = 'images/portrait.png'
+ogLocale = 'en_US'
 
 [[params.experience]]
 company = 'Docsumo'
@@ -40,13 +60,13 @@ period = '2018 - 2023'
     weight = 1
 
   [[menu.main]]
-    name = 'Blogs'
-    pageRef = '/blogs'
+    name = 'Projects'
+    pageRef = '/projects'
     weight = 2
 
   [[menu.main]]
-    name = 'Projects'
-    pageRef = '/projects'
+    name = 'Blogs'
+    pageRef = '/blogs'
     weight = 3
 
   [[menu.main]]
