@@ -20,14 +20,9 @@
       />
     {{ end }}
     <div>
-      {{ with .Site.Params.status }}
-        <p class="status">
-          <span aria-hidden="true">{{ $.Site.Params.statusEmoji | default "🛠️" }}</span>
-          {{ . }}
-        </p>
-      {{ end }}
       <h1>{{ .Site.Params.name }}</h1>
       <p class="hero-role">{{ .Site.Params.role }}</p>
+      {{ with .Site.Params.status }}<p class="status">{{ . }}</p>{{ end }}
     </div>
   </div>
   <p class="hero-summary">{{ .Site.Params.summary }}</p>

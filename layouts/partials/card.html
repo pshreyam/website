@@ -1,16 +1,21 @@
-{{- /* One card for any page. Context: a Page. */ -}}
+{{- /* One row for any page. Context: a Page. */ -}}
 <article class="card">
-  {{- with .Date }}
-    <div class="card-meta">
-      <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>
-      {{- with $.ReadingTime }}<span class="dot">{{ . }} min read</span>{{ end }}
-    </div>
-  {{- end }}
-  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-  {{- with .Description }}<p>{{ . }}</p>{{ end }}
-  {{- with .Params.tags }}
-    <div class="tags">
-      {{- range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
-    </div>
-  {{- end }}
+  <div class="card-body">
+    {{- with .Date }}
+      <div class="card-meta">
+        <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>
+        {{- with $.ReadingTime }}<span class="dot">{{ . }} min read</span>{{ end }}
+      </div>
+    {{- end }}
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{- with .Description }}<p>{{ . }}</p>{{ end }}
+    {{- with .Params.tags }}
+      <div class="tags">
+        {{- range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+      </div>
+    {{- end }}
+  </div>
+  <span class="card-arrow" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </span>
 </article>

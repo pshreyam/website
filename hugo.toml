@@ -28,7 +28,6 @@ name = 'Shreyam Pokharel'
 initials = 'SP'
 role = 'Software Engineer'
 status = 'Building document extraction pipelines at Docsumo'
-statusEmoji = '🛠️'
 # `summary` is the hero copy. `description` is the meta/SERP line — kept under
 # 160 chars so search engines show it whole instead of clipping it.
 summary = 'Backend engineer focused on Python systems, scalable APIs, and practical product engineering. I build reliable software with clean architecture and measurable outcomes.'

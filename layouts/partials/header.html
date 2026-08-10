@@ -1,9 +1,10 @@
 {{- $page := . -}}
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="{{ "/" | relURL }}">
+    {{- /* Mark only. The name is the <h1> directly below on the home page, and
+           repeating it twice within 200px read as a mistake. */}}
+    <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ .Site.Params.name }} — home">
       <span class="brand-mark" aria-hidden="true">{{ .Site.Params.initials }}</span>
-      <span>{{ .Site.Params.name }}</span>
     </a>
 
     <nav class="site-nav" id="primary-nav" aria-label="Primary">
