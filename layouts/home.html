@@ -7,8 +7,10 @@
     {{- /* Source is 400x400, so 140px is the largest slot that stays sharp at
            2x DPR. Sized to that rather than upscaled into a bigger frame. */}}
     {{ with resources.Get .Site.Params.portrait }}
-      {{ $x1 := .Resize "140x140 jpg q82" }}
-      {{ $x2 := .Resize "280x280 jpg q82" }}
+      {{- /* The hero is the LCP image on mobile. WebP cuts its transfer size
+            while the 1x/2x variants keep it sharp without over-delivering. */ -}}
+      {{ $x1 := .Resize "140x140 webp q65" }}
+      {{ $x2 := .Resize "280x280 webp q65" }}
       <img
         class="hero-photo"
         src="{{ $x1.RelPermalink }}"
@@ -17,6 +19,7 @@
         height="140"
         alt="Portrait of {{ $.Site.Params.name }}"
         fetchpriority="high"
+        decoding="async"
       />
     {{ end }}
     <div>

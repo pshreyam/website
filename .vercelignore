@@ -1,0 +1,12 @@
+# The site is a pure Hugo build. None of the Node test tooling is needed to
+# deploy it, and shipping it would make Vercel run `npm install` (pulling
+# Playwright) on every deploy for no benefit. Vercel also caps at Node 24.x,
+# so keeping this out avoids any runtime-version coupling entirely.
+package.json
+package-lock.json
+node_modules
+playwright.config.js
+tests
+test-results
+playwright-report
+.nvmrc

@@ -1,7 +1,6 @@
-# MUST become the real origin before launch (e.g. 'https://example.com/').
-# While this is '/', canonical, og:url, og:image and every sitemap <loc> stay
-# relative — which makes sitemap.xml invalid and stops social previews rendering.
-baseURL = '/'
+# The canonical public origin. Hugo uses this for canonical links, Open Graph
+# metadata, JSON-LD, sitemap entries, and the robots.txt sitemap URL.
+baseURL = 'https://www.shreyampokharel.com.np/'
 locale = 'en-us'
 title = 'Shreyam Pokharel'
 enableRobotsTXT = true
@@ -18,7 +17,9 @@ enableGitInfo = true
     noClasses = false
     style = "monokai"
   [markup.goldmark.renderer]
-    unsafe = true
+    # Content is authored as Markdown. Do not allow raw HTML from content files:
+    # it turns a compromised or unreviewed post into a stored-XSS vector.
+    unsafe = false
 
 [taxonomies]
 tag = 'tags'
